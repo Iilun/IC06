@@ -12,7 +12,27 @@ public class Ingredient : Item
     [SerializeField]
     private int type;
     
-    public int GetType()
+    new public void PickUp(Player player)
+    {
+        base.PickUp(player);
+        switch(type){
+            case TYPE_FER :  transform.Rotate(new Vector3(0,player.transform.rotation.eulerAngles.y,0), Space.Self);
+                break;
+
+            case TYPE_EAU :  transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                break;
+
+            case TYPE_DYNAMITE : transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                break;
+
+            case TYPE_POUDRE :  transform.Rotate(new Vector3(0,0,0), Space.Self);
+                break;
+        }
+        
+       
+    }
+
+    new public int GetType()
     {
         return type;
     }

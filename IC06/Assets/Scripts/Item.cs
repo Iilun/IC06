@@ -36,8 +36,8 @@ public class Item : Interactable
     {
         if(currentPlayer != null)
         {
-            transform.position = currentPlayer.transform.position + Vector3.Scale(currentPlayer.transform.forward,new Vector3(2f,1f,2f)) + new Vector3(0, PLAYER_HEIGHT, 0);
-
+            // transform.position = currentPlayer.transform.position + Vector3.Scale(currentPlayer.transform.forward,new Vector3(2f,1f,2f)) + new Vector3(0, PLAYER_HEIGHT, 0);
+            // transform.RotateAround(currentPlayer.transform.position, new Vector3(0,0,0), 20);
         }
     }
 
@@ -67,16 +67,26 @@ public class Item : Interactable
     {
         currentPlayer = player;
         currentPlayer.SetCurrentItem(this);
+        GetComponent<BulletDrop>().DisablePhysics(true);
+        if (GetComponent<Collider>() != null){
+                GetComponent<Collider>().enabled = false;
+        }
+        this.transform.parent = currentPlayer.transform;
+        this.transform.localPosition = new Vector3(0, PLAYER_HEIGHT, 4);
     }
 
     public void Drop()
     {
+        transform.parent = ItemUtils.GetGame().transform;
         currentPlayer.SetCurrentItem(null);
         transform.position = transform.position + Vector3.Scale(currentPlayer.transform.forward, new Vector3(6f, 0, 6f));//+ new Vector3(0, -PLAYER_HEIGHT, 0)
         
         
         //faire egaffe
         GetComponent<BulletDrop>().DisablePhysics(false);
+        if (GetComponent<Collider>() != null){
+                GetComponent<Collider>().enabled = true;
+        }
         currentPlayer = null;
         isDropped = true;
     }

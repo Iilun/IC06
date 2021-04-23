@@ -12,11 +12,15 @@ public class Bomb : Bullet
 
    
     // Start is called before the first frame update
+    
+    private void Awake() {
+        isShootable = false;
+    }
+    
     new void Start()
     {
         base.Start();
         StartCoroutine(Explosion());
-        isShootable = false;
     }
 
     private IEnumerator Explosion(){
@@ -38,9 +42,18 @@ public class Bomb : Bullet
         }
     }
 
-    void OnTriggerEnter(Collider other) {
+    new void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         if(other.gameObject.layer == 3){
             isDisarmed = true;
         }
+    }
+
+    public void Disarm(){
+        isDisarmed = true;
+    }
+
+    public void Clear(){
+        countdown.text = "";
     }
 }

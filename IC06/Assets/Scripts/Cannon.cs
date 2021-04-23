@@ -92,6 +92,11 @@ public class Cannon : Interactable
 
             if (isShooting && interactingPlayer != null && Input.GetKeyUp(interactingPlayer.GetControls().GetRelease()))
             {
+                if (bullet.GetComponent<Bomb>() != null){
+                    Bomb b = bullet.GetComponent<Bomb>();
+                    b.Disarm();
+                    b.Clear();
+                }
                 StartCoroutine(Shoot());
                 shoot_rotation = transform.rotation;
                 interactingPlayer.SetCurrentItem(null);
@@ -112,7 +117,7 @@ public class Cannon : Interactable
 
         
         
-        StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.5f));
+        StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.3f));
        
         
 

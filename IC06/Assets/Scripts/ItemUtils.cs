@@ -18,6 +18,10 @@ public class ItemUtils : MonoBehaviour
         instance = this;
     }
 
+    public static GameObject GetGame(){
+        return instance.gameObject;
+    }
+
     public static void CreateBullet(BulletInfo bullet, Vector3 position)
     {
 
@@ -47,6 +51,7 @@ public class ItemUtils : MonoBehaviour
             if (bullet.GetType() == Bullet.BOMB_BULLET)
             {
                 GameObject bomb = Instantiate(DestroyableUtils.GetBomb(), position, Quaternion.identity);
+                bomb.GetComponent<Bomb>().SetBoat(bullet.GetBoat());
                 bomb.GetComponent<Bomb>().SetIsShootable(true);
             }
 
@@ -57,7 +62,7 @@ public class ItemUtils : MonoBehaviour
     public static BulletInfo CraftBullet(CraftStation craft)
     {
         HashSet<int> ingredientTypes = new HashSet<int>();
-
+        Boat boat =  craft.GetComponent<InteractableDestroyable>().GetBoat();
         ingredientTypes.Add(craft.GetIng(0).GetType());
         
         if (craft.GetIng(1) != null)
@@ -77,32 +82,32 @@ public class ItemUtils : MonoBehaviour
         {
             craft.Remove(Ingredient.TYPE_FER, true);
             craft.Remove(Ingredient.TYPE_DYNAMITE, true);           
-            return new BulletInfo(Bullet.NORMAL_BULLET);
+            return new BulletInfo(Bullet.NORMAL_BULLET, boat);
         } else if(ingredientTypes.Contains(Ingredient.TYPE_DYNAMITE) && ingredientTypes.Contains(Ingredient.TYPE_POUDRE))
         {
             craft.Remove(Ingredient.TYPE_DYNAMITE, true);
             craft.Remove(Ingredient.TYPE_POUDRE, true);;
-            return new BulletInfo(Bullet.FIRE_BULLET);
+            return new BulletInfo(Bullet.FIRE_BULLET, boat);
         }  else if(ingredientTypes.Contains(Ingredient.TYPE_DYNAMITE) && ingredientTypes.Contains(Ingredient.TYPE_EAU))
         {
             craft.Remove(Ingredient.TYPE_DYNAMITE, true);
             craft.Remove(Ingredient.TYPE_EAU, true);;
-            return new BulletInfo(Bullet.ICE_BULLET);
+            return new BulletInfo(Bullet.ICE_BULLET, boat);
         } else if(ingredientTypes.Contains(Ingredient.TYPE_FER) && ingredientTypes.Contains(Ingredient.TYPE_EAU))
         {
             craft.Remove(Ingredient.TYPE_FER, true);
             craft.Remove(Ingredient.TYPE_EAU, true);;
-            return new BulletInfo(Bullet.IEM_BULLET);
+            return new BulletInfo(Bullet.IEM_BULLET, boat);
         } else if(ingredientTypes.Contains(Ingredient.TYPE_FER) && ingredientTypes.Contains(Ingredient.TYPE_POUDRE))
         {
             craft.Remove(Ingredient.TYPE_FER, true);
             craft.Remove(Ingredient.TYPE_POUDRE, true);;
-            return new BulletInfo(Bullet.BOMB_BULLET);
+            return new BulletInfo(Bullet.BOMB_BULLET, boat);
         } else if(ingredientTypes.Contains(Ingredient.TYPE_POUDRE) && ingredientTypes.Contains(Ingredient.TYPE_EAU))
         {
             craft.Remove(Ingredient.TYPE_POUDRE, true);
             craft.Remove(Ingredient.TYPE_EAU, true);;
-            return new BulletInfo(Bullet.WIND_BULLET);
+            return new BulletInfo(Bullet.WIND_BULLET, boat);
         } 
 
         return null;

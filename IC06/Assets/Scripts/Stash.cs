@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stash : Interactable
 {
@@ -17,6 +18,9 @@ public class Stash : Interactable
 
     [SerializeField]
     private TextMesh tooltip;
+
+    [SerializeField]
+    private Text count;
 
     [SerializeField]
     private float delay;
@@ -46,6 +50,7 @@ public class Stash : Interactable
         isInteracting = false;
         isAdding = false;
         ings = new Ingredient[maxNumberOfIngredients];
+        count.text = "0";
         for (int i = 0; i< initNumberOfIngredients; i++)
         {
             AddIngredient();
@@ -105,6 +110,7 @@ public class Stash : Interactable
     {
         numberOfIngredients--;
         //gestion de l'affichage
+        count.text = numberOfIngredients.ToString();
         Displayingredients();
     }
 
@@ -167,10 +173,8 @@ public class Stash : Interactable
     private void AddIngredient()
     {
         numberOfIngredients++;
+        count.text = numberOfIngredients.ToString();
         Displayingredients();
-
-
-
     }
 
     private void Displayingredients()
@@ -189,8 +193,20 @@ public class Stash : Interactable
 
         for (int i=0; i< numberOfIngredients; i++)
         {
-            Ingredient currentIng = Instantiate(prefab, GetPos(i), Quaternion.identity).GetComponent<Ingredient>();
-            float scaleChange = 0.5f * currentIng.gameObject.GetComponent<Collider>().bounds.size.z;
+            Ingredient currentIng = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<Ingredient>();
+            //Ingredient currentIng = Instantiate(prefab, GetPos(i), Quaternion.identity).GetComponent<Ingredient>();
+            //Display en fonction :
+            // if (currentIng.GetType() == Ingredient.TYPE_DYNAMITE){
+            //     float scaleChange = 0.7f * currentIng.gameObject.transform.GetComponent<Collider>().bounds.size.z;
+            //     currentIng.gameObject.transform.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
+            //     currentIng.transform.Rotate(new Vector3(0,0,90),Space.Self);
+            // } else {
+            //     float scaleChange = 0.5f * currentIng.gameObject.GetComponent<Collider>().bounds.size.z;
+            //     currentIng.gameObject.transform.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
+                
+            // }
+
+            float scaleChange = 0.1f * currentIng.gameObject.GetComponent<Collider>().bounds.size.z;
             currentIng.gameObject.transform.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
             currentIng.SetIsFake(true);
             ings[i] = currentIng;

@@ -44,9 +44,6 @@ public class Bullet : Item
 
     protected bool isShootable = true;
 
-    //TEST
-    public Material testMaterial; 
-
     private Boat boat;
 
     public void SetBoat(Boat value){
@@ -90,15 +87,17 @@ public class Bullet : Item
         
     }
 
-    void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Ouioui" + other.gameObject);
         if (other.gameObject.GetComponent<Destroyable>() != null  && isShot && !hasDestroyed && other.gameObject.GetComponent<Destroyable>().GetBoat() != boat)
         {
 
             hasDestroyed = true;
 
             //Effet du boulet
+
+            Debug.Log("Ouioui " + type.ToString());
 
             if(type == NORMAL_BULLET)
             {
@@ -113,13 +112,6 @@ public class Bullet : Item
                 
                 other.gameObject.GetComponent<Destroyable>().Destroy(Destroyable.DESTRUCTION_LOURDE, true, 0);//Va agir sur les points de vie du floor, et le detruire si jamais
 
-                //TEST
-                List<Tile> tiles = TileUtils.GetClosestTiles(other.gameObject.GetComponent<Destroyable>().GetTile(), 2, 'r');
-                foreach (Tile t in tiles)
-                {
-                    t.gameObject.GetComponent<MeshRenderer>().material = testMaterial;
-                    //Destructions faibles sur celles ci
-                }
             } else if(type == FIRE_BULLET)
             {
                 //Degats a l'arriv�e a voir
