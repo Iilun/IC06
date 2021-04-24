@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3820410157138407843}
   - component: {fileID: 2518841449029180966}
   - component: {fileID: 2395301694085980260}
-  - component: {fileID: -5529145852201607725}
   - component: {fileID: 6525374549498990450}
   - component: {fileID: 5672001623779003096}
   - component: {fileID: 191715973409136108}
+  - component: {fileID: 7336295151443036370}
   m_Layer: 0
   m_Name: Dynamite gelee
   m_TagString: Untagged
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2704921314352054190}
-  m_Mesh: {fileID: -403280101179148777, guid: d514a048998753144825a6b995d11850, type: 3}
+  m_Mesh: {fileID: -403280101179148777, guid: 55fc705b00e76394f934beca4fee1dc3, type: 3}
 --- !u!23 &2395301694085980260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-5529145852201607725
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2704921314352054190}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10968923, y: 0.11123167, z: 0.63084656}
-  m_Center: {x: -0.0273246, y: -0.0011850775, z: 0.3168988}
 --- !u!114 &6525374549498990450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+--- !u!65 &7336295151443036370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704921314352054190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11696636, y: 0.11123168, z: 0.63084656}
+  m_Center: {x: 0.0028605089, y: -0.0012387749, z: 0.0012808297}

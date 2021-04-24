@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1177703066602273665}
   - component: {fileID: 2205563167979038171}
   - component: {fileID: 8254879063532128740}
+  - component: {fileID: 1070358623620588209}
   m_Layer: 0
   m_Name: StashPos
   m_TagString: Untagged
@@ -115,6 +116,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1070358623620588209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177703066602273667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7a92c7c9bf04544a83335dbcffb787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroyable: 0
 --- !u!1 &1177703066720764278
 GameObject:
   m_ObjectHideFlags: 0

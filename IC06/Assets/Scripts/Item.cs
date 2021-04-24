@@ -18,7 +18,7 @@ public class Item : Interactable
     // Start is called before the first frame update
     protected void Start()
     {
-        baseScale = GetComponent<Collider>().bounds.size;
+        baseScale = transform.localScale;
         isFake = false;
         isDropped = true;
     }
@@ -31,6 +31,7 @@ public class Item : Interactable
     public void ResetScale()
     {
         transform.localScale = baseScale;
+        transform.rotation = Quaternion.identity;
     }
     void FixedUpdate()
     {
@@ -73,11 +74,11 @@ public class Item : Interactable
         }
         this.transform.parent = currentPlayer.transform;
         this.transform.localPosition = new Vector3(0, PLAYER_HEIGHT, 4);
+        Debug.Log("base_pickup");
     }
 
     public void Drop()
     {
-        transform.parent = ItemUtils.GetGame().transform;
         currentPlayer.SetCurrentItem(null);
         transform.position = transform.position + Vector3.Scale(currentPlayer.transform.forward, new Vector3(6f, 0, 6f));//+ new Vector3(0, -PLAYER_HEIGHT, 0)
         
@@ -87,7 +88,7 @@ public class Item : Interactable
         if (GetComponent<Collider>() != null){
                 GetComponent<Collider>().enabled = true;
         }
-        currentPlayer = null;
+        SetCurrentPlayer(null);
         isDropped = true;
     }
 
@@ -104,6 +105,9 @@ public class Item : Interactable
     public void SetCurrentPlayer(Player player)
     {
         currentPlayer = player;
+        if(player == null){
+            transform.parent = ItemUtils.GetGame().transform;
+        }
     }
 
     public void SetIsDropped(bool value)

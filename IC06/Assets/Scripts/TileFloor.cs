@@ -15,6 +15,13 @@ public class TileFloor : Destroyable
 
         void Start(){
             //Si indestructible changer le mesh
+            if (!isDestroyable){
+                Material[] mats =  GetComponent<Renderer>().materials;
+                mats[0] = mats[0];
+                mats[1] = DestroyableUtils.GetIndestructibleTileMaterial();
+
+                GetComponent<Renderer>().materials = mats;
+            }
         }
         public bool IsDestroyed(){
             return health <= 0;

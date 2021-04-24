@@ -89,7 +89,7 @@ public class Bullet : Item
 
     protected void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ouioui" + other.gameObject);
+
         if (other.gameObject.GetComponent<Destroyable>() != null  && isShot && !hasDestroyed && other.gameObject.GetComponent<Destroyable>().GetBoat() != boat)
         {
 

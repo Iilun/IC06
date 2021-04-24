@@ -34,11 +34,17 @@ public class DestroyableUtils : MonoBehaviour
 
     public GameObject tileDestroyAlone;
 
+    public Material indestructible;
+
     public Transform mainCamera;
 
     void Awake()
     {
         instance = this;
+    }
+
+    public static Material GetIndestructibleTileMaterial(){
+        return instance.indestructible;
     }
 
     public static GameObject GetFire()

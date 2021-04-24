@@ -92,6 +92,7 @@ public class Cannon : Interactable
 
             if (isShooting && interactingPlayer != null && Input.GetKeyUp(interactingPlayer.GetControls().GetRelease()))
             {
+                bullet.gameObject.SetActive(true);
                 if (bullet.GetComponent<Bomb>() != null){
                     Bomb b = bullet.GetComponent<Bomb>();
                     b.Disarm();
@@ -102,7 +103,7 @@ public class Cannon : Interactable
                 interactingPlayer.SetCurrentItem(null);
                 bullet.SetCurrentPlayer(null);
                 bullet.SetBoat(interactingPlayer.GetBoat());
-                bullet.gameObject.SetActive(true);
+                
                 bullet.InitiateCountDown();
                 bullet.transform.position = transform.position;
                 FactoryReset(false);
@@ -135,25 +136,23 @@ public class Cannon : Interactable
                 // Vector3.Scale(new Vector3(transform.forward.x, 1f,1f),v + new Vector3(0, 0, facteur * v.x * Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180)) - bullet.transform.position + transform.position);
 
 
-                Vector3 movement;
                 if (base_rotation.eulerAngles.y < 270)
                 {
                     
-                    movement  = v + new Vector3(0, 0, facteur * v.x * Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180)) - bullet.transform.position + transform.position;
+                    bullet.transform.position = transform.position + v + new Vector3(0, 0, facteur * v.x* Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180));
 
 
                 }
                 else
                 {
-                    movement = Vector3.Scale(new Vector3(-1, 1, 1), v) + new Vector3(0, 0, facteur * v.x * Mathf.Tan((-Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180)) - bullet.transform.position + transform.position;
-
+                    bullet.transform.position = transform.position + Vector3.Scale(new Vector3(-1, 1, 1), v) + new Vector3(0, 0, facteur * v.x* Mathf.Tan((-Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180));
   
                 }
             
                 
-                bullet.transform.Translate(movement);
+                //bullet.transform.Translate(movement);
                 
-                //bullet.transform.position = transform.position + v + new Vector3(0, 0, facteur * v.x* Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180));
+                
                 yield return new WaitForSeconds(1f / arcArray.Length);
                 
 

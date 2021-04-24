@@ -50,7 +50,7 @@ public class ItemUtils : MonoBehaviour
             }
             if (bullet.GetType() == Bullet.BOMB_BULLET)
             {
-                GameObject bomb = Instantiate(DestroyableUtils.GetBomb(), position, Quaternion.identity);
+                GameObject bomb = Instantiate(DestroyableUtils.GetBomb(), position, Quaternion.Euler(-90,0,0));
                 bomb.GetComponent<Bomb>().SetBoat(bullet.GetBoat());
                 bomb.GetComponent<Bomb>().SetIsShootable(true);
             }

@@ -127,7 +127,7 @@ public class Tile : Destroyable
     private void ActivateBomb()
     {
        //Instantiate bomb
-       GameObject bomb = Instantiate(DestroyableUtils.GetBomb(), transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
+       GameObject bomb = Instantiate(DestroyableUtils.GetBomb(), transform.position + new Vector3(0, 3f, 0), Quaternion.Euler(-90,0,0));
        bomb.GetComponent<Bomb>().SetBoat(boat);
     }
 

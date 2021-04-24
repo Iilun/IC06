@@ -51,6 +51,11 @@ public class CraftStation : Interactable
             }
 
         }
+
+        if (ings[0] != null)
+        {
+            ings[0].transform.RotateAround(transform.position, Vector3.up, 20 * Time.deltaTime);  
+        }
     }
 
     public override void Interact(Player player)
@@ -114,31 +119,22 @@ public class CraftStation : Interactable
         ing.GetComponent<Collider>().enabled = false;
         DisplayIngredients();
         
-        ItemUtils.CreateBullet(ItemUtils.CraftBullet(this), interactingPlayer.transform.position + new Vector3(0, 5f, 0));
+        ItemUtils.CreateBullet(ItemUtils.CraftBullet(this), transform.position + new Vector3(0, 8f, 0));
         
     }
 
     private void DisplayIngredients()
     {
-        int i = 0;
-        float scaleChange = 0.3f * GetComponent<Collider>().bounds.size.z;
-        foreach (Ingredient ing in ings)
+        
+        if (ings[0] != null)
         {
-            if (ing != null)
-            {
-                ing.transform.position = GetPos(i);
-                ing.transform.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
-                i++;
-            }
+            float scaleChange = 0.7f;
+           
+            ings[0].transform.Rotate(new Vector3(30,0,0), Space.Self);
+            ings[0].transform.localScale = Vector3.Scale(ings[0].transform.localScale, new Vector3(scaleChange, scaleChange, scaleChange));
+             ings[0].transform.position = transform.position + new Vector3(0, (0.5f * this.GetComponent<Collider>().bounds.size.y) + (0.3f*ings[0].transform.localScale.y), 0);
         }
-    }
-
-    private Vector3 GetPos(int i)
-    {
-        Vector3[] pos = { new Vector3(-0.25f, 0.7f, -0.25f), new Vector3(-0.25f, 0.7f, 0.25f), new Vector3(0.25f, 0.7f, -0.25f), new Vector3(0.25f, 0.7f, 0.25f) };
-        // Debug.Log(transform.position);
-        //Debug.Log(Vector3.Scale(GetComponent<Collider>().bounds.size, pos[i]) + transform.position);
-        return Vector3.Scale(GetComponent<Collider>().bounds.size, pos[i]) + transform.position;
+        
     }
 
     public Ingredient Remove(int ingType, bool isTypeRemove)

@@ -15,17 +15,23 @@ public class Ingredient : Item
     new public void PickUp(Player player)
     {
         base.PickUp(player);
+        Debug.Log("ing_pickup");
         switch(type){
-            case TYPE_FER :  transform.Rotate(new Vector3(0,player.transform.rotation.eulerAngles.y,0), Space.Self);
+            case TYPE_FER :  transform.localRotation = Quaternion.Euler(0,player.transform.rotation.eulerAngles.y,0);
+            //(new Vector3(0,player.transform.rotation.eulerAngles.y,0), Space.Self);
                 break;
 
-            case TYPE_EAU :  transform.Rotate(new Vector3(-90,0,0), Space.Self);
+            case TYPE_EAU : transform.localRotation = Quaternion.Euler(-90,0,0); 
+            //transform.Rotate(new Vector3(-90,0,0), Space.Self);
                 break;
 
-            case TYPE_DYNAMITE : transform.Rotate(new Vector3(-90,0,0), Space.Self);
+            case TYPE_DYNAMITE : transform.localRotation = Quaternion.Euler(-90,0,0); 
+            //transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                                Debug.Log("Yolo");
                 break;
 
-            case TYPE_POUDRE :  transform.Rotate(new Vector3(0,0,0), Space.Self);
+            case TYPE_POUDRE : transform.localRotation = Quaternion.Euler(0,0,0);  
+            //transform.Rotate(new Vector3(0,0,0), Space.Self);
                 break;
         }
         
@@ -35,5 +41,15 @@ public class Ingredient : Item
     new public int GetType()
     {
         return type;
+    }
+
+    public override void Enter(Player player)
+    {
+        
+        if(player.GetCurrentItem() == null && isDropped && !isFake)
+        {
+            PickUp(player); //ici seulement pour les futurs trucs je pense
+        }
+        
     }
 }
