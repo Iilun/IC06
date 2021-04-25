@@ -33,6 +33,8 @@ public class Bullet : Item
 
     public const int BOMB_EXPLOSION_TIME = 8;
 
+    public const float NORMAL_EXPLOSION_DELAY = 2;
+
     private bool isShot = false;
     private bool hasDestroyed = false;
 
@@ -112,6 +114,16 @@ public class Bullet : Item
                 
                 other.gameObject.GetComponent<Destroyable>().Destroy(Destroyable.DESTRUCTION_LOURDE, true, 0);//Va agir sur les points de vie du floor, et le detruire si jamais
 
+                List<Tile> tiles = TileUtils.GetClosestTiles(other.gameObject.GetComponent<Destroyable>().GetTile(), 1 , 'r');//Mettre a 1 
+
+                //3.18 -> 27
+                //26.4 -> -3.6
+                //50.4 -> -3.22
+                foreach (Tile t in tiles)
+                {
+                    t.gameObject.GetComponent<Destroyable>().Destroy(Destroyable.DESTRUCTION_LEGERE, false, NORMAL_EXPLOSION_DELAY);
+                    //EFFET DE FEU
+                }
             } else if(type == FIRE_BULLET)
             {
                 //Degats a l'arriv�e a voir

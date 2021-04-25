@@ -15,9 +15,8 @@ public class Ingredient : Item
     new public void PickUp(Player player)
     {
         base.PickUp(player);
-        Debug.Log("ing_pickup");
         switch(type){
-            case TYPE_FER :  transform.localRotation = Quaternion.Euler(0,player.transform.rotation.eulerAngles.y,0);
+            case TYPE_FER :  transform.localRotation = Quaternion.Euler(0,0,0);
             //(new Vector3(0,player.transform.rotation.eulerAngles.y,0), Space.Self);
                 break;
 

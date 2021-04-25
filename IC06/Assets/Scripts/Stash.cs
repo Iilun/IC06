@@ -17,7 +17,7 @@ public class Stash : Interactable
     private GameObject prefab;
 
     [SerializeField]
-    private TextMesh tooltip;
+    private Text tooltip;
 
     [SerializeField]
     private Text count;
@@ -42,6 +42,9 @@ public class Stash : Interactable
 
     private bool disabled;
 
+    [SerializeField]
+    private Image disabledImage;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -51,6 +54,8 @@ public class Stash : Interactable
         isAdding = false;
         ings = new Ingredient[maxNumberOfIngredients];
         count.text = "0";
+        disabled = false;
+        disabledImage.gameObject.SetActive(false);
         for (int i = 0; i< initNumberOfIngredients; i++)
         {
             AddIngredient();
@@ -94,6 +99,8 @@ public class Stash : Interactable
             
             PickUp(player);
             StartCoroutine(WaitFactoryReset());
+        } else {
+            FactoryReset();
         }
 
     }
@@ -125,10 +132,6 @@ public class Stash : Interactable
 
     private void FactoryReset()
     {
-        if (numberOfIngredients > 0)
-        {
-            DisplayTooltip(interactingPlayer);
-        }
         interactingPlayer.SetIsInteracting(false);
         interactingPlayer = null;
         isInteracting = false;
@@ -137,7 +140,7 @@ public class Stash : Interactable
 
     public override void Enter(Player player)
     {
-        if (numberOfIngredients > 0)
+        if (numberOfIngredients > 0 && !disabled && player.GetCurrentItem() == null)
         {
             player.SetSelectedInteractable(this);
             DisplayTooltip(player);
@@ -231,6 +234,13 @@ public class Stash : Interactable
 
     public override void SetDisabled(bool value){
         disabled = value;
+        if (value){
+            disabledImage.gameObject.SetActive(true);
+            count.text = "";
+        } else {
+            disabledImage.gameObject.SetActive(false);
+            count.text = numberOfIngredients.ToString();
+        }
     }
 
 }

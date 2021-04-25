@@ -16,10 +16,11 @@ public class TileFloor : Destroyable
         void Start(){
             //Si indestructible changer le mesh
             if (!isDestroyable){
+                
+                GetComponent<MeshFilter>().mesh = DestroyableUtils.GetIndestructibleTileMesh(); 
                 Material[] mats =  GetComponent<Renderer>().materials;
-                mats[0] = mats[0];
-                mats[1] = DestroyableUtils.GetIndestructibleTileMaterial();
-
+                mats[0] = DestroyableUtils.GetIndestructibleTileMaterial();
+                mats[1] = mats[1];
                 GetComponent<Renderer>().materials = mats;
             }
         }
@@ -32,19 +33,20 @@ public class TileFloor : Destroyable
         }
 
         public void Damage(int damageType, bool isBaseTile){
+            float damage = 0;
             if (damageType == Destroyable.DESTRUCTION_LEGERE){
-                health -= 25;
+                damage = 25;
             } else if (damageType == Destroyable.DESTRUCTION_LOURDE){
-                health -= 37.5f;
+                damage = 37.5f;
             } else if (damageType == Destroyable.DESTRUCTION_TOTALE){
-                health -= TileUtils.TILE_FLOOR_MAX_HEALTH;
+                damage = TileUtils.TILE_FLOOR_MAX_HEALTH;
             }
-
+            health -= damage;
             if(health < 0){
                 health = 0;
             }
 
-            motherTile.GetBoat().InflictDamage((int)(TileUtils.TILE_FLOOR_MAX_HEALTH - health), Bullet.DIRECT_DAMAGE);
+            motherTile.GetBoat().InflictDamage((int)(damage), Bullet.DIRECT_DAMAGE);
             //ICI RECALCULER LE MESH DE CA ET CEUX AUTOURS
 
             if (IsDestroyed()){

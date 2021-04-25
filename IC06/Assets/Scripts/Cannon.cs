@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Cannon : Interactable 
 {
-    public TextMesh tooltip;
+    public Text tooltip;
     [SerializeField]
     private LaunchArc arc;
     [SerializeField]
@@ -56,7 +56,7 @@ public class Cannon : Interactable
                 ((transform.rotation.eulerAngles.y < AngleTo360(offset + MAX_ROTATION)) && rotateHorizontal > 0))
             {
                 transform.Rotate(0, rotateHorizontal, 0, Space.Self);
-                arc.transform.Rotate(0, rotateHorizontal, 0, Space.World);
+                //arc.transform.Rotate(0, rotateHorizontal, 0, Space.World);
 
             }
 
@@ -98,6 +98,8 @@ public class Cannon : Interactable
                     b.Disarm();
                     b.Clear();
                 }
+                bullet.GetComponent<BulletDrop>().DisablePhysics(true);
+                bullet.GetComponent<Collider>().isTrigger = true;
                 StartCoroutine(Shoot());
                 shoot_rotation = transform.rotation;
                 interactingPlayer.SetCurrentItem(null);
@@ -253,7 +255,7 @@ public class Cannon : Interactable
     private void Align(Player player)
     {
 
-        float x_displacement = -transform.forward.x * (GetComponent<Collider>().bounds.size.x * 0.7f);
+        float x_displacement = -transform.forward.x * (GetComponent<Collider>().bounds.size.x * 0.8f);
         Vector3 newPosition = new Vector3(transform.position.x + x_displacement, player.transform.position.y, transform.position.z);
         player.transform.position = newPosition;
         player.transform.forward = transform.forward;

@@ -44,9 +44,11 @@ public class CraftStation : Interactable
             if (interactingPlayer != null && interactingPlayer.GetCurrentItem() == null && Input.GetKeyDown(interactingPlayer.GetControls().GetRelease()))
             {
                 Ingredient ing = Remove(0, false);
-                ing.GetComponent<Collider>().enabled = true;
-                ing.ResetScale();     
-                ing.PickUp(interactingPlayer);
+                if (ing != null){
+                    ing.GetComponent<Collider>().enabled = true;
+                    ing.ResetScale();     
+                    ing.PickUp(interactingPlayer);
+                }
                 FactoryReset();
             }
 
@@ -193,9 +195,13 @@ public class CraftStation : Interactable
 
     public override void Enter(Player player)
     {
-        player.SetSelectedInteractable(this);
-        DisplayTooltip(player);
-        isAvailable = true;
+        if (player.GetCurrentItem() == null ||( player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Bucket>() == null)){
+            player.SetSelectedInteractable(this);
+            DisplayTooltip(player);
+            isAvailable = true;
+        }
+        
+        
     }
 
     private void DisplayTooltip(Player player)

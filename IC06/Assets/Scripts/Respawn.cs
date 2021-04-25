@@ -6,7 +6,7 @@ using System.Linq;
 public class Respawn : MonoBehaviour
 {
     public float min_height;
-    public const float RESPAWN_HEIGHT = 3f;
+    public const float RESPAWN_HEIGHT = 5f;
 
 
     void FixedUpdate()

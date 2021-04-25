@@ -85,7 +85,9 @@ public class Tile : Destroyable
             }
         } else if(i == BOMB_SPAWN){
             ActivateBomb();
-        } 
+        } else if (i == DESTRUCTION_LOURDE){
+            Instantiate(DestroyableUtils.GetNormalExplosion(), transform.position, Quaternion.identity);
+        }
         
         if (tileFloor.IsDestroyable()){
             DamageTileFloor(i, isBaseTile);
@@ -195,13 +197,11 @@ public class Tile : Destroyable
      private void ActivateIce()
     {
         
-        ice = Instantiate(DestroyableUtils.GetIce(), new Vector3(-1000,  -1000, -1000), Quaternion.identity);
+        ice = Instantiate(DestroyableUtils.GetIce(), new Vector3(-1000,  -1000, -1000), Quaternion.Euler(-90,0,0));
         float base_tile_height = tileFloor.GetComponent<Collider>().bounds.size.y;
         float ice_height = ice.GetComponent<Collider>().bounds.size.y;
-        Debug.Log(ice_height);
         float final_height_offset = (0.5f * base_tile_height) + (0.5f * ice_height);
         ice.transform.position = transform.position + new Vector3(0,final_height_offset,0);
-        //Ici detect si un joueur est sur la tile
         StartCoroutine(IceCountdown());
     }
 

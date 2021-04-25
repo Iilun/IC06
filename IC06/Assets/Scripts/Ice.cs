@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ice : MonoBehaviour
 {
     private bool startFreeze;
+
+    private List<Player> affectedPlayers = new List<Player>();
     void Start() {
         startFreeze = true;
         StartCoroutine(StartFreeze());
@@ -17,15 +19,17 @@ public class Ice : MonoBehaviour
             if(startFreeze){
                 StartCoroutine(FreezePlayer(other.GetComponent<Player>()));
             }
+            affectedPlayers.Add(other.gameObject.GetComponent<Player>());
             other.gameObject.GetComponent<Player>().SetSlowed(true);
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)//Probleme pas called on destroy donc 
     {
         if (other.gameObject.GetComponent<Player>() != null)
         {
             other.gameObject.GetComponent<Player>().SetSlowed(false);
+            affectedPlayers.Remove(other.gameObject.GetComponent<Player>());
         }
     }
 
@@ -50,4 +54,11 @@ public class Ice : MonoBehaviour
         player.SetIsInteracting(false);
         Destroy(iceCube);
     }
+
+    void OnDestroy()
+     {
+        foreach(Player p in affectedPlayers){
+            p.SetSlowed(false);
+        }
+     }
 }
