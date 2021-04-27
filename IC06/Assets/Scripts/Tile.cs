@@ -87,6 +87,7 @@ public class Tile : Destroyable
             ActivateBomb();
         } else if (i == DESTRUCTION_LOURDE){
             Instantiate(DestroyableUtils.GetNormalExplosion(), transform.position, Quaternion.identity);
+            GetBoat().InflictDamage(Bullet.NORMAL_BULLET_BOAT_DAMAGE, Bullet.DIRECT_DAMAGE);
         }
         
         if (tileFloor.IsDestroyable()){

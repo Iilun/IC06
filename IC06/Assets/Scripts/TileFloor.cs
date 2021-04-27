@@ -46,7 +46,7 @@ public class TileFloor : Destroyable
                 health = 0;
             }
 
-            motherTile.GetBoat().InflictDamage((int)(damage), Bullet.DIRECT_DAMAGE);
+            CalculateBrokenMesh();
             //ICI RECALCULER LE MESH DE CA ET CEUX AUTOURS
 
             if (IsDestroyed()){
@@ -54,6 +54,15 @@ public class TileFloor : Destroyable
                Debug.Log(transform.position);
                Instantiate(DestroyableUtils.GetTileDestroyAlone(), motherTile.transform.position, Quaternion.identity);
                Destroy(gameObject);
+            }
+        }
+
+        private void CalculateBrokenMesh(){
+            if (health <= 75 && health > 25){
+                GetComponent<MeshFilter>().mesh = DestroyableUtils.GetHalfBrokenTileMesh();
+            }
+            else if (health <= 25){
+                GetComponent<MeshFilter>().mesh = DestroyableUtils.GetHeavyBrokenTileMesh();
             }
         }
 

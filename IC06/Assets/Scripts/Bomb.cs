@@ -33,6 +33,7 @@ public class Bomb : Bullet
         }
         if (!isDisarmed){
             Destroy(gameObject);
+            GetBoat().InflictDamage(Bullet.BOMB_BULLET_BOAT_DAMAGE, Bullet.DIRECT_DAMAGE);
             List<Tile> tiles = TileUtils.GetClosestTilesFromBullet(this, 1, 'c');
 
             Instantiate(DestroyableUtils.GetBigExplosion(), tiles[0].gameObject.transform.position + new Vector3(0f,4f,0f), Quaternion.identity);

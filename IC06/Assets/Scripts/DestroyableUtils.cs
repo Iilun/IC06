@@ -38,6 +38,8 @@ public class DestroyableUtils : MonoBehaviour
 
     public Mesh indestructibleMesh;
 
+    public Mesh halfBrokenTileMesh;
+    public Mesh heavyBrokenTileMesh;
     public Transform mainCamera;
 
     void Awake()
@@ -45,6 +47,13 @@ public class DestroyableUtils : MonoBehaviour
         instance = this;
     }
 
+    public static Mesh GetHalfBrokenTileMesh(){
+        return instance.halfBrokenTileMesh;
+    }
+
+    public static Mesh GetHeavyBrokenTileMesh(){
+        return instance.heavyBrokenTileMesh;
+    }
     public static Mesh GetIndestructibleTileMesh(){
         return instance.indestructibleMesh;
     }

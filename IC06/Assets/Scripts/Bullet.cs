@@ -35,6 +35,10 @@ public class Bullet : Item
 
     public const float NORMAL_EXPLOSION_DELAY = 2;
 
+    public const int NORMAL_BULLET_BOAT_DAMAGE = 150;
+
+    public const int BOMB_BULLET_BOAT_DAMAGE = 400;
+
     private bool isShot = false;
     private bool hasDestroyed = false;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftStation : Interactable
 {
@@ -12,7 +13,7 @@ public class CraftStation : Interactable
     private Player interactingPlayer;
 
     private bool disabled;
-    public TextMesh tooltip;
+    public Text tooltip;
 
 
     void Start()
@@ -67,7 +68,7 @@ public class CraftStation : Interactable
         isAvailable = false;
         firstClick = true;
         //Si null bah ca reste null
-        if (player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Ingredient>() != null)
+        if (player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Ingredient>() != null && ( ings[0] == null || (player.GetCurrentItem().GetComponent<Ingredient>().GetType() != ings[0].GetType())))
         {
             
             PlaceIngredient(player.GetCurrentItem().GetComponent<Ingredient>());
@@ -241,11 +242,16 @@ public class CraftStation : Interactable
 
     private void Align(Player player)
     {
-
-        float x_displacement = -transform.forward.x * (GetComponent<Collider>().bounds.size.x * 1.7f);
+        Debug.Log(GetComponent<Collider>().bounds.size);
+        float facteur = 1;
+        if (this.transform.position.x > 0){
+            facteur = -1;
+        }
+        float x_displacement = facteur * transform.right.x * (GetComponent<Collider>().bounds.size.y * 1f);
         Vector3 newPosition = new Vector3(transform.position.x + x_displacement, player.transform.position.y, transform.position.z);
         player.transform.position = newPosition;
-        player.transform.forward = transform.forward;
+        player.transform.forward = - facteur * transform.right;
+        //  player.transform.LookAt(transform.position + transform.forward);
     }
 
     public Ingredient GetIng(int pos)
