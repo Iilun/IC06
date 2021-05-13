@@ -9,16 +9,14 @@ public class Respawn : MonoBehaviour
     public const float RESPAWN_HEIGHT = 5f;
 
 
-    void FixedUpdate()
+    public void RespawnPlayer()
     {//Changer mettre ca sur l'eau en collider
 
-        if (transform.position.y < min_height)
-        {
             transform.position = GetClosestTile(TileUtils.GetTilesForPlayer(GetComponent<Player>())).position + new Vector3(0, RESPAWN_HEIGHT, 0);
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
-        }
+
             
     }
         

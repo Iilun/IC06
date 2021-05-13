@@ -69,6 +69,10 @@ public class Player : MonoBehaviour
 
         }
 
+        if (other.gameObject.tag == "Water"){
+            this.GetComponent<Respawn>().RespawnPlayer();
+        }
+
 
     }
 
