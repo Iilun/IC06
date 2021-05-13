@@ -1471,7 +1471,7 @@
     "m_Name": "_Lines",
     "m_DefaultReferenceName": "Texture2D_a72f0c67c5da42b5a3c9bc2c27498731",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -1896,8 +1896,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 8.0,
-        "y": 8.0,
+        "x": 1.0,
+        "y": 1.0,
         "z": 0.0,
         "w": 0.0
     }
