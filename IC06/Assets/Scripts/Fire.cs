@@ -32,6 +32,11 @@ public class Fire : Interactable
 
     //De mon coté : UI 
 
+    //BUGS : Tir toujours pas correct je crois
+    //Pas de desactivation de la table de craft ?
+    //Bug des touches toujours hein
+    //TODO : Rambardes?
+
     public override void Interact(Player player)
     {
         interactingPlayer = player;
