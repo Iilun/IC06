@@ -32,6 +32,18 @@ public class Player : MonoBehaviour
         
     }
 
+    public void Instantiate(PlayerInfos infos, float z_offset){
+        controls = infos.GetControls();
+        if (infos.GetBoatId() == GameTime.BLUE_BOAT_ID){
+            boat = GameTime.GetBlueBoat();
+        } else {
+            boat = GameTime.GetRedBoat();
+        }
+        this.gameObject.transform.position = boat.gameObject.transform.position + new Vector3(0, 5, z_offset);
+        infos.GetModelInfos().SetModelToModelParameters(this.gameObject);
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -68,7 +80,7 @@ public class Player : MonoBehaviour
             }
 
         }
-
+        Debug.Log(other.gameObject);
         if (other.gameObject.tag == "Water"){
             this.GetComponent<Respawn>().RespawnPlayer();
         }

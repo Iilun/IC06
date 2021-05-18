@@ -1,14 +1,54 @@
 fileFormatVersion: 2
-guid: baf65c27644148d479c470f3448cc232
+guid: 43348ca2ff4d45047ae64859b295ab3c
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
-  externalObjects:
+  internalIDToNameTable:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Or
-    second: {fileID: 2100000, guid: 9460f27865bf79e489658afec867e996, type: 2}
+      74: -2806202948997489474
+    second: Chapeau_1|CubeAction.001
+  - first:
+      74: 2002236897737606371
+    second: Botes|CubeAction.005
+  - first:
+      74: 5049201879130497372
+    second: Mains|CubeAction.006
+  - first:
+      74: 1767989991530892773
+    second: Redingote|CubeAction.007
+  - first:
+      74: 827734690505542573
+    second: Pirate|CubeAction.013
+  - first:
+      74: -1079459284985938672
+    second: Barbe|CubeAction.014
+  - first:
+      74: 5409049304988778990
+    second: CrochetD|CubeAction.009
+  - first:
+      74: -2425132866138956023
+    second: JambeBoisD|CubeAction.010
+  - first:
+      74: -297866344148053187
+    second: JambesBoisG|CubeAction.011
+  - first:
+      74: 6117038172409694115
+    second: Cheveaux|CubeAction.012
+  - first:
+      74: 6676325260252443986
+    second: Bandana|CubeAction.016
+  - first:
+      74: 9163200842834910827
+    second: CrochetG|CubeAction.017
+  - first:
+      74: 420769996512056521
+    second: CacheOeil|CubeAction.024
+  - first:
+      74: 7281355412945880255
+    second: Chapeau_2|CubeAction.025
+  - first:
+      74: 6591744614294866704
+    second: Moustaches|CubeAction.026
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -78,7 +118,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -93,11 +133,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

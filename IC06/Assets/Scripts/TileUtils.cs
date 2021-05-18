@@ -29,8 +29,6 @@ public class TileUtils : MonoBehaviour
 
     public static List<Tile> GetTilesForBoat(Boat boat)
     {
-        Debug.Log(allTiles);
-        Debug.Log(boat);
         return allTiles.FindAll(e => e.GetBoat().GetId().Equals(boat.GetId()));
     }
 

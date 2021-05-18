@@ -112,6 +112,7 @@ public class Tile : Destroyable
 
     private IEnumerator FireDamage()
     {
+        Debug.Log("FireDamageTick");
         boat.InflictFireDamage();
         yield return new WaitForSeconds(Bullet.FIRE_DAMAGE_TICK);
         if (fire != null)
@@ -160,7 +161,7 @@ public class Tile : Destroyable
     {
         if (value)
         {
-            if(fire == null)
+            if(fire == null && tileFloor.IsDestroyable())
             {
                 ActivateFire();
             }

@@ -9,9 +9,10 @@ public class BulletDrop : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject);
+        Debug.Log(other.gameObject);
         if (other.gameObject.GetComponent<TileFloor>() != null)
         {
+            Debug.Log("Tile");
             DisablePhysics(true);
             GetComponent<Collider>().isTrigger = true;
         }

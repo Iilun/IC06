@@ -246,7 +246,7 @@ public class Cannon : Interactable
     IEnumerator ClickWaiter()
     {
         //Wait for .5 seconds
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         firstClick = false;
 

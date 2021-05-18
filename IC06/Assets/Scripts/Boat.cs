@@ -64,7 +64,12 @@ public class Boat : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        healthBar.SetHealth(health);
+        if(health > 0){
+            healthBar.SetHealth(health);
+        } else {
+            healthBar.SetHealth(0);
+            GameTime.Stop();
+        }
     }
 
     public int GetId()
@@ -75,11 +80,12 @@ public class Boat : MonoBehaviour
     public void InflictDamage(int dmg, int damageType)
     {
         int healthValue = GetHealth() - dmg;
-        if (healthValue > 0)
-        {
-            SetHealth(healthValue);
+        SetHealth(healthValue);
+        if (healthValue > 0){
             healthBar.AddInfo(dmg, damageType);
         }
+       
+
     }
 
     public void InflictFireDamage()
