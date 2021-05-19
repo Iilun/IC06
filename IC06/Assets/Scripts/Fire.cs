@@ -30,10 +30,8 @@ public class Fire : Interactable
     //Attnetion bug du feu a resoudre
     //Avoir le systeme tile -> tilefloor
 
-    //De mon coté : UI 
-
-    //BUGS : Tir toujours pas correct je crois
-    //Pas de desactivation de la table de craft ?
+    //De mon coté : UI
+    //Pas de desactivation de la table de craft ? A faire
     //Bug des touches toujours hein
     //TODO : Rambardes?
 
