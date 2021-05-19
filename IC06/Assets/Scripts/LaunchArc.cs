@@ -90,4 +90,38 @@ public class LaunchArc : MonoBehaviour
 
         return new Vector3(x, y);
     }
+
+    public Vector3[] Calculate3dArcArray(Vector3 origine,Vector3 arrivee)
+    {
+
+        Vector3[] arcArray = new Vector3[resolution + 1];
+        radianAngle = Mathf.Deg2Rad * angle;
+        float xDistance = arrivee.x - origine.x;
+        float zDistance = arrivee.z - origine.z;
+
+        float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
+        float maxDistance2 = Mathf.Sqrt((xDistance * xDistance) + (zDistance * zDistance));
+
+        Debug.Log(maxDistance);
+        Debug.Log(maxDistance2);
+        for (int i = 0; i < resolution; i++)
+        {
+            float t = (float)i / (float)resolution;
+            arcArray[i] = Calculate3dArcPoint(origine, arrivee, t, maxDistance2);
+        }
+        arcArray[resolution] = arrivee;
+
+        return arcArray;
+    }
+    Vector3 Calculate3dArcPoint(Vector3 origin, Vector3 arrivee, float t, float maxDistance){
+        float xDistance = arrivee.x - origin.x;
+        float zDistance = arrivee.z - origin.z;
+        float x = (t * xDistance) + origin.x;
+        float z = (t * zDistance) + origin.z;
+        float height_x = t * maxDistance;
+        float y = height_x * Mathf.Tan(radianAngle) - ((g * height_x * height_x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+        
+        
+        return new Vector3(x, y,z);
+    }
 }

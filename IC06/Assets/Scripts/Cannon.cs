@@ -28,6 +28,10 @@ public class Cannon : Interactable
 
     [SerializeField]
     private Image disabledImage;
+    [SerializeField]
+    private GameObject endCircle;
+
+    private Vector3 endPosition;
  
     void Start()
     {
@@ -39,6 +43,12 @@ public class Cannon : Interactable
         base_rotation = transform.rotation;
         disabled = false;
         disabledImage.gameObject.SetActive(false);
+        endCircle.SetActive(false);
+        endCircle.transform.localPosition = new Vector3(0,0,0);
+
+
+        //TEST
+        arc.Calculate3dArcArray(new Vector3(1,0,1), new Vector3(-9,0,-9));
     }
 
     void FixedUpdate()
@@ -79,6 +89,8 @@ public class Cannon : Interactable
                 shooting_strength += velocity_factor * Time.deltaTime;
                 arc.velocity = shooting_strength;
                 arcArray = arc.Render();
+                Vector3 end = arcArray[arcArray.Length-1] - arcArray[0];
+                endCircle.transform.localPosition = new Vector3(endCircle.transform.localPosition.x,endCircle.transform.localPosition.y,end.x);
 
             }
 
@@ -87,11 +99,14 @@ public class Cannon : Interactable
 
                 bullet.Load();
                 isShooting = true;
+                shooting_strength = 10;
                 arc.Render();
+                endCircle.SetActive(true);
             }
 
             if (isShooting && interactingPlayer != null && Input.GetKeyUp(interactingPlayer.GetControls().GetRelease()))
             {
+                endPosition = endCircle.transform.position;
                 bullet.gameObject.SetActive(true);
                 if (bullet.GetComponent<Bomb>() != null){
                     Bomb b = bullet.GetComponent<Bomb>();
@@ -117,15 +132,17 @@ public class Cannon : Interactable
 
     IEnumerator Shoot()
     {
-
-        
-        
+       
+        Debug.Log("POISTION ARC WORLD " + arc.transform.position);
+        Debug.Log("POISTION END WORLD " + endPosition);
+        arcArray = arc.Calculate3dArcArray(arc.transform.position, endPosition);
         StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.3f));
        
         
 
         foreach (Vector3 v in arcArray)
         {
+            Debug.Log(v);
             if (bullet != null) {
                 float facteur = 1f; ;
                 
@@ -137,19 +154,10 @@ public class Cannon : Interactable
                 
                 // Vector3.Scale(new Vector3(transform.forward.x, 1f,1f),v + new Vector3(0, 0, facteur * v.x * Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180)) - bullet.transform.position + transform.position);
 
-
-                if (base_rotation.eulerAngles.y < 270)
-                {
-                    
-                    bullet.transform.position = transform.position + v + new Vector3(0, 0, facteur * v.x* Mathf.Tan((Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180));
+                bullet.transform.position = v;
 
 
-                }
-                else
-                {
-                    bullet.transform.position = transform.position + Vector3.Scale(new Vector3(-1, 1, 1), v) + new Vector3(0, 0, facteur * v.x* Mathf.Tan((-Mathf.Abs(shoot_rotation.eulerAngles.y - base_rotation.eulerAngles.y)) * Mathf.PI / 180));
-  
-                }
+                
             
                 
                 //bullet.transform.Translate(movement);
@@ -184,7 +192,10 @@ public class Cannon : Interactable
         isInteracting = false;
         isAvailable = true;
         transform.rotation = base_rotation;
-        shooting_strength = 7f;
+        shooting_strength = 10;
+        arc.velocity = shooting_strength;
+        endCircle.SetActive(false);
+        endCircle.transform.localPosition = new Vector3(0,0,0);
     }
 
     public override void Interact(Player player)

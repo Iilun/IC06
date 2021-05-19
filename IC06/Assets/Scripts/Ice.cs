@@ -43,7 +43,7 @@ public class Ice : MonoBehaviour
 
         Vector3 playerPos = player.gameObject.transform.position;
         Vector3 pos = new Vector3(playerPos.x, playerPos.y, playerPos.z);
-        GameObject iceCube = Instantiate(DestroyableUtils.GetIceCube(), pos, Quaternion.identity);
+        GameObject iceCube = Instantiate(DestroyableUtils.GetIceCube(), pos, Quaternion.Euler(-90,0,0));
         float ice_cube_height_offset = iceCube.GetComponent<Collider>().bounds.size.y;
         float base_height = transform.position.y - (0.5f * GetComponent<Collider>().bounds.size.y);
         float final_height = base_height + (0.5f * ice_cube_height_offset);
