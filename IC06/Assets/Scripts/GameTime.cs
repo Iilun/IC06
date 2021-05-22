@@ -21,10 +21,14 @@ public class GameTime : MonoBehaviour
     public Boat redBoat;
 
     public Boat blueBoat;
+
+    public bool isGameMode;
     void Awake()
     {
         instance = this;
-        StartGamePhase();
+        if(isGameMode){
+            StartGamePhase();
+        }
     }
     public static GameObject GetRedModel(){
         return instance.defaultRed;
@@ -48,11 +52,16 @@ public class GameTime : MonoBehaviour
 
     private void SpawnPlayers(){
         List<PlayerInfos> playerInfosList;
-        //menu.getPlayers()
-        /* if (playerInfosList.Count <3){
+        playerInfosList = VariablesGlobales.GetAllPlayers();
+        if (playerInfosList.Count <3){
             //Deux joueurs
             foreach(PlayerInfos p in playerInfosList){
-                GameObject playerObject = Instantiate(p.GetPrefab(), new Vector3(0,100,0), Quaternion.identity);
+                GameObject playerObject;
+                if (p.GetBoatId() == BLUE_BOAT_ID){
+                    playerObject = Instantiate(GetBlueModel(), new Vector3(0,100,0), Quaternion.identity);
+                } else {
+                    playerObject = Instantiate(GetRedModel(), new Vector3(0,100,0), Quaternion.identity);
+                }  
                 playerObject.GetComponent<Player>().Instantiate(p, 0);
             }
             
@@ -61,13 +70,18 @@ public class GameTime : MonoBehaviour
             playerInfosList.Sort((a,b) =>  (a.GetBoatId() != b.GetBoatId())? 1 : 0);
             float offset = 5;
             foreach(PlayerInfos p in playerInfosList){
-                GameObject playerObject = Instantiate(p.GetPrefab(), new Vector3(0,100,0), Quaternion.identity);
+                GameObject playerObject;
+                if (p.GetBoatId() == BLUE_BOAT_ID){
+                    playerObject = Instantiate(GetBlueModel(), new Vector3(0,100,0), Quaternion.identity);
+                } else {
+                    playerObject = Instantiate(GetRedModel(), new Vector3(0,100,0), Quaternion.identity);
+                }  
                 playerObject.GetComponent<Player>().Instantiate(p, offset);
                 offset = offset - (Mathf.Sign(offset) * 10);
                 Debug.Log(offset);
             }
 
-        } */
+        }
     }
 
     public static void Stop(){

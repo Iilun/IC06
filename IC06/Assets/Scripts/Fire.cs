@@ -34,7 +34,7 @@ public class Fire : Interactable
     //Pas de desactivation de la table de craft ? A faire
     //Bug des touches toujours hein
     //TODO : Rambardes?
-
+    //LISTE CONTROLES DYNALIQUE ! 
     public override void Interact(Player player)
     {
         interactingPlayer = player;

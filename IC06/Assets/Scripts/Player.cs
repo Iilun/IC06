@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
 
     private bool isSlowed;
 
+    private bool buttonAction;
+    private bool buttonRelease;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +27,12 @@ public class Player : MonoBehaviour
         selectedInteractable = null;
         if (player_id == 1)
         {
-            controls = new PlayerControls('K',"Horizontal", "Vertical", KeyCode.E, KeyCode.Space);
+            controls = new PlayerControls('K',"Horizontal", "Vertical", "Interact", "Action", "");
+            //controls = new PlayerControls('K',"Horizontal3", "Vertical3", "Interact3", "Action3", "");
+            
         } else
         {
-            controls = new PlayerControls('K',"Horizontal1", "Vertical1", KeyCode.P, KeyCode.RightControl);
+            controls = new PlayerControls('K',"Horizontal1", "Vertical1", "Interact1", "Action1", "");
         }
         
     }
@@ -44,30 +49,48 @@ public class Player : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void InstantiateMenu(PlayerInfos infos){
+        controls = infos.GetControls();
+        if (infos.GetBoatId() == GameTime.BLUE_BOAT_ID){
+            boat = GameTime.GetBlueBoat();
+        } else {
+            boat = GameTime.GetRedBoat();
+        }
+        infos.GetModelInfos().SetModelToModelParameters(this.gameObject);
+        SetIsInteracting(true);
+        transform.localScale = new Vector3(3,3,3);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         
     }
 
-    void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        //Debug.Log(currentItem);
-        if (Input.GetKeyDown(controls.GetAction()) && selectedInteractable != null && selectedInteractable.IsAvailable() && !isInteracting)
+        if (Input.GetButtonDown(controls.GetAction()) && selectedInteractable != null && selectedInteractable.IsAvailable() && !isInteracting)
         {
             selectedInteractable.Interact(this);
             isInteracting = true;
         }
 
-        if (Input.GetKeyDown(controls.GetAction()) && !isInteracting && currentItem != null)
+        if (Input.GetButtonDown(controls.GetAction()) && !isInteracting && currentItem != null)
         {
             currentItem.Drop();
         }
 
-        if (Input.GetKeyDown(controls.GetAction()))
+        if (Input.GetButtonDown(controls.GetAction()))
         {
-            //?
+            Debug.Log("action");
         }
+
+        if (Input.GetButtonDown(controls.GetRelease())){
+            Debug.Log("release");
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //Debug.Log(currentItem);
+        
     }
 
     void OnTriggerEnter(Collider other)

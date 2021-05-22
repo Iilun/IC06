@@ -51,7 +51,7 @@ public class Cannon : Interactable
         arc.Calculate3dArcArray(new Vector3(1,0,1), new Vector3(-9,0,-9));
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (isInteracting)
         {
@@ -71,7 +71,7 @@ public class Cannon : Interactable
             }
 
 
-            if (interactingPlayer != null && Input.GetKeyUp(interactingPlayer.GetControls().GetAction()))
+            if (interactingPlayer != null && Input.GetButtonUp(interactingPlayer.GetControls().GetAction()))
             {
                 if (firstClick)
                 {
@@ -94,9 +94,9 @@ public class Cannon : Interactable
 
             }
 
-            if (bullet != null && interactingPlayer != null && Input.GetKeyDown(interactingPlayer.GetControls().GetRelease()))
+            if (bullet != null && interactingPlayer != null && Input.GetButtonDown(interactingPlayer.GetControls().GetRelease()))
             {
-
+                
                 bullet.Load();
                 isShooting = true;
                 shooting_strength = 10;
@@ -104,7 +104,7 @@ public class Cannon : Interactable
                 endCircle.SetActive(true);
             }
 
-            if (isShooting && interactingPlayer != null && Input.GetKeyUp(interactingPlayer.GetControls().GetRelease()))
+            if (isShooting && interactingPlayer != null && Input.GetButtonUp(interactingPlayer.GetControls().GetRelease()))
             {
                 endPosition = endCircle.transform.position;
                 bullet.gameObject.SetActive(true);

@@ -8,21 +8,32 @@ public class PlayerControls
 
     private string horizontal;
     private string vertical;
-    private KeyCode action;
-    private KeyCode release;
+    private string action;
+    private string release;
 
-    public PlayerControls(char t, string h, string v, KeyCode a, KeyCode r)
+    private string name;
+
+    public const string NAME_LEFT_CLAVIER = "QZSD, E, Espace";
+    public const string NAME_RIGHT_CLAVIER = "KOLM, P, Ctrl";
+    public const string VIDE = "Pas de controles";
+
+    public PlayerControls(char t, string h, string v, string a, string r, string name)
     {
         type = t;
         horizontal = h;
         vertical = v;
         action = a;
         release = r;
+        this.name=name;
     }
 
     public char GetType()
     {
         return type;
+    }
+
+    public string GetName(){
+        return name;
     }
 
     public string GetHorizontal()
@@ -35,12 +46,12 @@ public class PlayerControls
         return vertical;
     }
 
-    public KeyCode GetAction()
+    public string GetAction()
     {
         return action;
     }
 
-    public KeyCode GetRelease()
+    public string GetRelease()
     {
         return release;
     }

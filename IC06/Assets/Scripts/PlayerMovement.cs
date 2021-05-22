@@ -15,12 +15,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+
+
     void Update()
-    {
-
-    }
-
-    void FixedUpdate()
     {
         
         if (!player.IsInteracting())

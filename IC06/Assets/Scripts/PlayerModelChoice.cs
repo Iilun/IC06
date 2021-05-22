@@ -9,7 +9,7 @@ public class PlayerModelChoice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1Infos = new PlayerInfos(1, new PlayerControls('K',"Horizontal", "Vertical", KeyCode.E, KeyCode.Space), 0);
+        player1Infos = new PlayerInfos(new PlayerControls('K',"Horizontal", "Vertical", "Interact1", "Action1", ""), 0);
         playerObject = Instantiate(GameTime.GetRedModel(), new Vector3(0,100,0), Quaternion.identity);
         playerObject.GetComponent<Player>().Instantiate(player1Infos, 0);
     }

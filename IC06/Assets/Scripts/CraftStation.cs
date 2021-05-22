@@ -24,12 +24,12 @@ public class CraftStation : Interactable
         ings = new Ingredient[]{null, null, null, null };
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (isInteracting)
         {
 
-            if (Input.GetKeyUp(interactingPlayer.GetControls().GetAction()))
+            if (Input.GetButtonUp(interactingPlayer.GetControls().GetAction()))
             {
                 if (firstClick)
                 {
@@ -42,7 +42,7 @@ public class CraftStation : Interactable
 
             }
 
-            if (interactingPlayer != null && interactingPlayer.GetCurrentItem() == null && Input.GetKeyDown(interactingPlayer.GetControls().GetRelease()))
+            if (interactingPlayer != null && interactingPlayer.GetCurrentItem() == null && Input.GetButtonDown(interactingPlayer.GetControls().GetRelease()))
             {
                 Ingredient ing = Remove(0, false);
                 if (ing != null){
