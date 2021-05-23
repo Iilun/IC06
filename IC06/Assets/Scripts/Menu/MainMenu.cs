@@ -35,11 +35,5 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("PauseMenu");
-        }
-    }
+    
 }

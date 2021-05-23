@@ -35,6 +35,10 @@ public class Fire : Interactable
     //Bug des touches toujours hein
     //TODO : Rambardes?
     //LISTE CONTROLES DYNALIQUE ! 
+
+    //TODO : ajouter un moins pour pouvoir enlever un joueur, desactivation de la pause dans les menus, boutons retour !
+    //Si on deco une manette, passer le joueur en sans controle, mais du coup pb ?
+    
     public override void Interact(Player player)
     {
         interactingPlayer = player;
@@ -98,7 +102,7 @@ public class Fire : Interactable
 
     private void DisplayTooltip(Player player)
     {
-        string interactKey = player.GetControls().GetAction().ToString();
+        string interactKey = player.GetControls().GetActionName();
         tooltip.text = "Appuyez sur (" + interactKey + ") pour éteindre";
         //26.4 -> -3.6
         //50.4 -> -3.22

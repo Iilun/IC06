@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         isInteracting = false;
         selectedInteractable = null;
-        if (player_id == 1)
+       /*  if (player_id == 1)
         {
             controls = new PlayerControls('K',"Horizontal", "Vertical", "Interact", "Action", "");
             //controls = new PlayerControls('K',"Horizontal3", "Vertical3", "Interact3", "Action3", "");
@@ -33,12 +33,14 @@ public class Player : MonoBehaviour
         } else
         {
             controls = new PlayerControls('K',"Horizontal1", "Vertical1", "Interact1", "Action1", "");
-        }
+        } */
         
     }
 
     public void Instantiate(PlayerInfos infos, float z_offset){
+        
         controls = infos.GetControls();
+        Debug.Log("Controle" + controls.GetAction());
         if (infos.GetBoatId() == GameTime.BLUE_BOAT_ID){
             boat = GameTime.GetBlueBoat();
         } else {

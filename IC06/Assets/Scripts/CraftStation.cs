@@ -209,7 +209,7 @@ public class CraftStation : Interactable
     {
         if (player != null)
         {
-            string interactKey = player.GetControls().GetAction().ToString();
+            string interactKey = player.GetControls().GetActionName();
             tooltip.text = "Appuyez sur (" + interactKey + ") pour utiliser";
         }
     }

@@ -16,6 +16,8 @@ public class PlayerControls
     public const string NAME_LEFT_CLAVIER = "QZSD, E, Espace";
     public const string NAME_RIGHT_CLAVIER = "KOLM, P, Ctrl";
     public const string VIDE = "Pas de controles";
+    public const string NAME_MANETTE_1 = "Manette 1";
+    public const string NAME_MANETTE_2 = "Manette 2";
 
     public PlayerControls(char t, string h, string v, string a, string r, string name)
     {
@@ -54,6 +56,25 @@ public class PlayerControls
     public string GetRelease()
     {
         return release;
+    }
+
+    public string GetActionName(){
+        switch(GetAction()){
+            case "Interact":
+                return "E";
+            case "Interact1":
+                return "P";
+                //CAS MANETTES
+            case "Interact3":
+                if (Input.GetJoystickNames()[0].Contains("XBOX")){
+                    return "A";
+                } else {
+                    return "CARRE";//PLAY ?
+                }
+            case "Interact4":
+                return "";
+        }
+        return "";
     }
 
 }

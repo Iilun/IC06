@@ -23,6 +23,14 @@ public class CharaMenuHandler : MonoBehaviour
 
     public Text errorText;
 
+    private int controllerSize;
+
+    private bool isModified;
+
+    public ButtonHolder buttonHolderPlayer3;
+    public ButtonHolder buttonHolderPlayer4;
+    
+
 
     void Awake() {
         instance = this;
@@ -30,17 +38,68 @@ public class CharaMenuHandler : MonoBehaviour
         availableControls = new List<PlayerControls>();
         availableControls.Add(new PlayerControls('K',"Horizontal", "Vertical", "Interact", "Action", PlayerControls.NAME_LEFT_CLAVIER));
         availableControls.Add(new PlayerControls('K',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_RIGHT_CLAVIER));
-        availableControls.Add(new PlayerControls('V',"", "", "", "", PlayerControls.VIDE));
+        availableControls.Add(new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE));
 
 
-
-
-        availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", "YOLO"));
-        availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", "YOLO2"));
+        availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_MANETTE_1));//DELETE
+        
+        controllerSize = Input.GetJoystickNames().Length;
+        if (controllerSize > 0 && Input.GetJoystickNames()[0] == ""){
+            controllerSize -= 1;
+        }
+        Debug.Log("Controller size= " + controllerSize);
+        if(controllerSize == 1){
+            Debug.Log(Input.GetJoystickNames()[0]);
+            availableControls.Add(new PlayerControls('C',"Horizontal3", "Vertical3", "Interact3", "Action3", PlayerControls.NAME_MANETTE_1));
+        }
+        if(controllerSize == 2){
+            availableControls.Add(new PlayerControls('C',"Horizontal4", "Vertical4", "Interact4", "Action4", PlayerControls.NAME_MANETTE_2));
+        }
     }
 
+    void Update(){
+        int newControllerSize = Input.GetJoystickNames().Length;
+        if (newControllerSize > 0 &&Input.GetJoystickNames()[0] == ""){
+            newControllerSize -= 1;
+        }
+        if (newControllerSize > controllerSize){
+            SetInfoMessage("Nouvelle manette connectée");
+            Debug.Log("connect +");
+            if(newControllerSize == 1){
+                availableControls.Add(new PlayerControls('C',"Horizontal3", "Vertical3", "Interact3", "Action3", PlayerControls.NAME_MANETTE_1));
+            }
+            if(newControllerSize == 2){
+                availableControls.Add(new PlayerControls('C',"Horizontal4", "Vertical4", "Interact4", "Action4", PlayerControls.NAME_MANETTE_2));
+            }
+        } else if (newControllerSize < controllerSize){
+            SetInfoMessage("Mannette déconnectée");
+            Debug.Log("disconnect");
+            if(newControllerSize == 0){
+                availableControls.RemoveAt(availableControls.Count -1);
+                foreach(CharacterSelect c in instance.allChara){
+                    if(c.GetInfos().GetControls().GetName() == PlayerControls.NAME_MANETTE_1){
+                        c.GetInfos().ChangeControls(new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE));
+                        c.GetDisplay().Display(c.GetInfos().GetControls());
+                    }
+                }
+
+            }
+            if(newControllerSize == 1){
+                availableControls.RemoveAt(availableControls.Count -1);
+
+                foreach(CharacterSelect c in instance.allChara){
+                    if(c.GetInfos().GetControls().GetName() == PlayerControls.NAME_MANETTE_2){
+                        c.GetInfos().ChangeControls(new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE));
+                        c.GetDisplay().Display(c.GetInfos().GetControls());
+                    }
+                 }
+                //enlever le concerné ici et le passer en sans controle !
+            }
+        }
+        controllerSize = newControllerSize;
+    }
     public static void AddPlayer(ButtonHolder button){
-        if (instance.availableControls.Count > 0){
+        if (instance.availableControls.Count > 1){
             //On a un controle de disponible, on instancie un objet
             if(button.slot_id == 2){
                 instance.player3.SetActive(true);
@@ -63,6 +122,35 @@ public class CharaMenuHandler : MonoBehaviour
             Debug.Log("Ajout de manette necessaire");
         }
     }
+
+    public static void DeletePlayer(ButtonHolder button){
+        CharacterSelect toRemove = null;
+        foreach(CharacterSelect c in instance.allChara){
+            if(c.GetSlot() == button.slot_id){
+                toRemove =c;
+               
+                Debug.Log("Removed "  + c.gameObject);
+            }
+        }
+        if (toRemove != null){
+            instance.allChara.Remove(toRemove);
+            instance.availableControls.Add(toRemove.GetInfos().GetControls());
+        }
+       
+        
+        if(button.slot_id == 2){
+                
+                instance.player3.GetComponent<CharacterSelect>().Delete();
+                instance.player3.SetActive(false);
+            } else {
+                instance.player4.GetComponent<CharacterSelect>().Delete();
+                instance.player4.SetActive(false);
+
+        }
+
+        
+        button.UnDisplay();
+    }
     public static void AddCharaSelect(CharacterSelect chara){
         if (instance.allChara == null){
             instance.allChara = new List<CharacterSelect>();
@@ -70,9 +158,7 @@ public class CharaMenuHandler : MonoBehaviour
         instance.allChara.Add(chara);
         instance.allChara.Sort((a,b) => a.GetSlot() > b.GetSlot() ? 1 : 0);
 
-        foreach(CharacterSelect c in instance.allChara){
-            Debug.Log(c.gameObject);
-        }
+        
 
     }
     public static PlayerControls GetNextAvailableControl(PlayerControls current){
@@ -83,10 +169,6 @@ public class CharaMenuHandler : MonoBehaviour
         PlayerControls next = instance.availableControls[0];
         if(current != null){
             instance.availableControls.Add(current);
-        } else {
-            if (next.GetName() == PlayerControls.VIDE){
-                next = instance.availableControls[1];//PAS SUR
-            }
         }
         instance.availableControls.RemoveAt(0);
         return next;
@@ -139,6 +221,12 @@ public class CharaMenuHandler : MonoBehaviour
     public void ValidateAndGoToGame(){
         bool errorControls = false;
         CharacterSelect problemCharacter = null;
+
+        if(instance.allChara.Count %2 != 0){
+            SetErrorMessage("Le nombre de joueur dans chaque équipe n'est pas le même !");
+            return;
+        }
+
         foreach (CharacterSelect c in instance.allChara){
             if (c.GetInfos().GetControls().GetName() == PlayerControls.VIDE){
                 errorControls = true;
@@ -150,13 +238,23 @@ public class CharaMenuHandler : MonoBehaviour
             SetErrorMessage("Le joueur " + (problemCharacter.GetSlot() +1) + " n'a pas de controles");
             return;
         }
+
+        
         foreach (CharacterSelect c in instance.allChara){
             VariablesGlobales.AddToPlayers(c.GetInfos());
+            Debug.Log("Add global " + c.GetInfos().GetControls().GetName());
         }
         mainMenu.PlayGame();
     }
 
     public static void SetErrorMessage(string errorMsg){
+        instance.errorText.color = Color.red;
+        instance.errorText.text = errorMsg;
+        instance.StartCoroutine(EffaceText());
+    }
+
+    public static void SetInfoMessage(string errorMsg){
+        instance.errorText.color = Color.white;
         instance.errorText.text = errorMsg;
         instance.StartCoroutine(EffaceText());
     }

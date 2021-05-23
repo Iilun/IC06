@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameTime : MonoBehaviour
 {
@@ -93,6 +94,14 @@ public class GameTime : MonoBehaviour
             instance.endCanvasText.color = Color.blue;
         }
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameMode)
+        {
+            SceneManager.LoadScene("PauseMenu");
+        }
     }
 
     void OnApplicationQuit()

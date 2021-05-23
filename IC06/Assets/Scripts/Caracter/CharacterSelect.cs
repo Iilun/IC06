@@ -29,6 +29,7 @@ public class CharacterSelect : MonoBehaviour
         return slot_id;
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -129,6 +130,12 @@ public class CharacterSelect : MonoBehaviour
             boatCanvas.gameObject.SetActive(false);
             CharaMenuHandler.SetCurrentPersonnalizationSlot(slot_id);
         }
+    }
+
+    public void Delete(){
+        this.slot_id = 99;
+        Destroy(playerObject);
+        infos = null;
     }
 
     public void UnPersonalize(){

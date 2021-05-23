@@ -18,6 +18,7 @@ public class BucketTile : Interactable
 
     public void Spawn(){
         GameObject bucketInstance = Instantiate(bucket, transform.position + new Vector3(0, 3, 0), Quaternion.Euler(-90,0,0));
+        if (bucketInstance != null)
         bucketInstance.GetComponent<Bucket>().SetMotherTile(this);
     }
 

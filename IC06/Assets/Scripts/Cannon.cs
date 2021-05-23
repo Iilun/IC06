@@ -233,7 +233,7 @@ public class Cannon : Interactable
 
     private void DisplayTooltip(Player player)
     {
-        string interactKey = player.GetControls().GetAction().ToString();
+        string interactKey = player.GetControls().GetActionName();
         tooltip.text = "Appuyez sur ("+ interactKey + ") pour utiliser";
     }
 
