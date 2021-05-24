@@ -79,14 +79,6 @@ public class Player : MonoBehaviour
             currentItem.Drop();
         }
 
-        if (Input.GetButtonDown(controls.GetAction()))
-        {
-            Debug.Log("action");
-        }
-
-        if (Input.GetButtonDown(controls.GetRelease())){
-            Debug.Log("release");
-        }
     }
 
     void FixedUpdate()

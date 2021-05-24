@@ -26,7 +26,7 @@ public class Ingredient : Item
 
             case TYPE_DYNAMITE : transform.localRotation = Quaternion.Euler(-90,0,0); 
             //transform.Rotate(new Vector3(-90,0,0), Space.Self);
-                                Debug.Log("Yolo");
+                             
                 break;
 
             case TYPE_POUDRE : transform.localRotation = Quaternion.Euler(0,0,0);  

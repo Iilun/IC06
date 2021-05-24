@@ -112,9 +112,7 @@ public class ModelInfos
         Jambes[jambeIndex].SetActive(true);
     }
     public void ChangeManteau(bool next){
-        foreach(GameObject g in Manteau){
-            Debug.Log("Continet " + g.name);
-        }
+        
         if (next){
             Manteau[manteauIndex++].SetActive(false);
             manteauIndex %= Manteau.Count;
@@ -124,7 +122,7 @@ public class ModelInfos
                 manteauIndex = Manteau.Count - 1;
             } 
         }
-        Debug.Log(manteauIndex);
+        
         Manteau[manteauIndex].SetActive(true);
     }
     public void ChangeOeil(bool next){
@@ -160,7 +158,6 @@ public class ModelInfos
                     break;
                 case MODEL_ID_JAMBES:
                     Jambes.Add(model.transform.GetChild(i).gameObject);
-                    Debug.Log("Added" + model.transform.GetChild(i).gameObject.name);
                     break;
                 case MODEL_ID_MANTEAU:
                     Manteau.Add(model.transform.GetChild(i).gameObject);

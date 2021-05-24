@@ -133,8 +133,7 @@ public class Cannon : Interactable
     IEnumerator Shoot()
     {
        
-        Debug.Log("POISTION ARC WORLD " + arc.transform.position);
-        Debug.Log("POISTION END WORLD " + endPosition);
+        
         arcArray = arc.Calculate3dArcArray(arc.transform.position, endPosition);
         StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.3f));
        
@@ -142,7 +141,7 @@ public class Cannon : Interactable
 
         foreach (Vector3 v in arcArray)
         {
-            Debug.Log(v);
+            
             if (bullet != null) {
                 float facteur = 1f; ;
                 

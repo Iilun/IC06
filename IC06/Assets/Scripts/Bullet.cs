@@ -103,7 +103,7 @@ public class Bullet : Item
 
             //Effet du boulet
 
-            Debug.Log("Ouioui " + type.ToString());
+            
 
             if(type == NORMAL_BULLET)
             {

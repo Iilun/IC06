@@ -105,14 +105,14 @@ public class CharacterSelect : MonoBehaviour
             PlayerControls tmpControls = CharaMenuHandler.GetNextAvailableControl(infos.GetControls());
             if (tmpControls != null){
                 infos.ChangeControls(tmpControls);
-                Debug.Log("Next \nCurrent = " + infos.GetControls().GetName());
+               
                 //UPDATE AFFICHAGE CONTROLS
                 display.Display(infos.GetControls());
             } else {
                 //ERROR
 
                 //CharaMenuHandler.SetErrorMessage("Plus de controles disponibles, ajoutez une manette");
-                Debug.Log("No more controls \nCurrent = " + infos.GetControls().GetName());
+               
             }
         }
         

@@ -16,6 +16,8 @@ public class GameTime : MonoBehaviour
 
     public Canvas endCanvas;
 
+    public Canvas pauseCanvas;
+
     public Text endCanvasText;
 
 
@@ -24,12 +26,16 @@ public class GameTime : MonoBehaviour
     public Boat blueBoat;
 
     public bool isGameMode;
+    public bool isEnded;
+
     void Awake()
     {
+        Debug.Log("AWAKEEEEEEEEEEEEEEEEEEEE");
         instance = this;
         if(isGameMode){
             StartGamePhase();
         }
+        
     }
     public static GameObject GetRedModel(){
         return instance.defaultRed;
@@ -47,6 +53,7 @@ public class GameTime : MonoBehaviour
     private void StartGamePhase(){
         instance.endCanvas.gameObject.SetActive(false);
         instance.gameCanvas.gameObject.SetActive(true);
+        isEnded = false;
         //Changer la cam / La scene ? 
         SpawnPlayers();
     }
@@ -54,6 +61,9 @@ public class GameTime : MonoBehaviour
     private void SpawnPlayers(){
         List<PlayerInfos> playerInfosList;
         playerInfosList = VariablesGlobales.GetAllPlayers();
+
+
+
         if (playerInfosList.Count <3){
             //Deux joueurs
             foreach(PlayerInfos p in playerInfosList){
@@ -93,14 +103,17 @@ public class GameTime : MonoBehaviour
         } else {
             instance.endCanvasText.color = Color.blue;
         }
+        instance.isEnded = true;
 
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && isGameMode)
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameMode &&!isEnded)
         {
-            SceneManager.LoadScene("PauseMenu");
+            pauseCanvas.gameObject.SetActive(true);
+            //gameCanvas.gameObject.SetActive(false);
+            Time.timeScale = 0;
         }
     }
 
@@ -108,5 +121,13 @@ public class GameTime : MonoBehaviour
     {
         instance.endCanvas.gameObject.SetActive(false);
     }
+
+    public void Depause(){
+        pauseCanvas.gameObject.SetActive(false);
+        //gameCanvas.gameObject.SetActive(true);
+        Time.timeScale = 1;
+    } 
+
+    
 
 }

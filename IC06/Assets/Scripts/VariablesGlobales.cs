@@ -17,4 +17,8 @@ public static class VariablesGlobales
     public static List<PlayerInfos> GetAllPlayers(){
         return allPlayers;
     }
+
+    public static void Reset(){
+        allPlayers = new List<PlayerInfos>();
+    }
 }

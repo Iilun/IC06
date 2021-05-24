@@ -51,7 +51,7 @@ public class TileFloor : Destroyable
 
             if (IsDestroyed()){
                // LA FAUDRA FAIRE LE SYSTEME
-               Debug.Log(transform.position);
+               
                Instantiate(DestroyableUtils.GetTileDestroyAlone(), motherTile.transform.position, Quaternion.identity);
                Destroy(gameObject);
             }

@@ -15,12 +15,16 @@ public class CraftStation : Interactable
     private bool disabled;
     public Text tooltip;
 
+    [SerializeField]
+    private Image disabledImage;
+
 
     void Start()
     {
         tooltip.text = "";
         isAvailable = false;
         isInteracting = false;
+        disabledImage.gameObject.SetActive(false);
         ings = new Ingredient[]{null, null, null, null };
     }
 
@@ -196,7 +200,7 @@ public class CraftStation : Interactable
 
     public override void Enter(Player player)
     {
-        if (player.GetCurrentItem() == null ||( player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Bucket>() == null)){
+        if ((player.GetCurrentItem() == null ||( player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Bucket>() == null)) && !disabled){
             player.SetSelectedInteractable(this);
             DisplayTooltip(player);
             isAvailable = true;
@@ -242,7 +246,7 @@ public class CraftStation : Interactable
 
     private void Align(Player player)
     {
-        Debug.Log(GetComponent<Collider>().bounds.size);
+        
         float facteur = 1;
         if (this.transform.position.x > 0){
             facteur = -1;
@@ -265,6 +269,11 @@ public class CraftStation : Interactable
 
     public override void SetDisabled(bool value){
         disabled = value;
+        if (value){
+            disabledImage.gameObject.SetActive(true);
+        } else {
+            disabledImage.gameObject.SetActive(false);
+        }
     }
 
 }

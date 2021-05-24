@@ -112,7 +112,7 @@ public class Tile : Destroyable
 
     private IEnumerator FireDamage()
     {
-        Debug.Log("FireDamageTick");
+        
         boat.InflictFireDamage();
         yield return new WaitForSeconds(Bullet.FIRE_DAMAGE_TICK);
         if (fire != null)
@@ -148,7 +148,7 @@ public class Tile : Destroyable
 
     private IEnumerator ReAbleCoroutine(){
         yield return new WaitForSeconds(Bullet.IEM_DISABLE_TIME);
-        Debug.Log("end");
+      
         if (interactable != null){
             Interactable interactableHere = interactable.gameObject.GetComponent<Interactable>();
             if (interactableHere != null){

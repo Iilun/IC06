@@ -74,7 +74,7 @@ public class Item : Interactable
         }
         this.transform.parent = currentPlayer.transform;
         this.transform.localPosition = new Vector3(0, PLAYER_HEIGHT, 4);
-        Debug.Log("base_pickup");
+       
     }
 
     public void Drop()

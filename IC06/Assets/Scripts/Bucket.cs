@@ -5,24 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Bucket : Item
 {
+    public MainMenu mainMenu;
     private bool isQuitting;
     private BucketTile motherTile;
 
-    void Awake() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
      void OnApplicationQuit()
     {
      isQuitting = true;
      }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        isQuitting = true;
-    }
     void OnDestroy()
     {
-        if (!isQuitting)
+        if (!isQuitting && motherTile != null && mainMenu.IsBucketSpawn())
         {
            motherTile.Spawn();
         }

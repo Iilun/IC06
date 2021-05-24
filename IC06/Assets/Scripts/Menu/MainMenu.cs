@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private bool bucketSpawn;
+
+    public bool IsBucketSpawn(){
+        return bucketSpawn;
+    }
     public void GoToCharacter()
     {
         SceneManager.LoadScene("Character");
@@ -22,7 +27,10 @@ public class MainMenu : MonoBehaviour
 
     public void GotoMainMenu()
     {
+        Time.timeScale = 1;
+        bucketSpawn = false;
         SceneManager.LoadScene("MainMenu");
+        VariablesGlobales.Reset();
     }
 
     public void QuitGame()
@@ -33,6 +41,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("Main");
+        bucketSpawn = true;
     }
 
     

@@ -102,8 +102,7 @@ public class LaunchArc : MonoBehaviour
         float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
         float maxDistance2 = Mathf.Sqrt((xDistance * xDistance) + (zDistance * zDistance));
 
-        Debug.Log(maxDistance);
-        Debug.Log(maxDistance2);
+    
         for (int i = 0; i < resolution; i++)
         {
             float t = (float)i / (float)resolution;

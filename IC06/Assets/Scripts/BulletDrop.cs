@@ -11,7 +11,7 @@ public class BulletDrop : MonoBehaviour
     {
         if (other.gameObject.GetComponent<TileFloor>() != null)
         {
-            Debug.Log("Tile");
+            
             DisablePhysics(true);
             GetComponent<Collider>().isTrigger = true;
         }

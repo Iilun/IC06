@@ -41,15 +41,15 @@ public class CharaMenuHandler : MonoBehaviour
         availableControls.Add(new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE));
 
 
-        availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_MANETTE_1));//DELETE
+        //availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_MANETTE_1));//DELETE
         
         controllerSize = Input.GetJoystickNames().Length;
         if (controllerSize > 0 && Input.GetJoystickNames()[0] == ""){
             controllerSize -= 1;
         }
-        Debug.Log("Controller size= " + controllerSize);
+        //Debug.Log("Controller size= " + controllerSize);
         if(controllerSize == 1){
-            Debug.Log(Input.GetJoystickNames()[0]);
+            //Debug.Log(Input.GetJoystickNames()[0]);
             availableControls.Add(new PlayerControls('C',"Horizontal3", "Vertical3", "Interact3", "Action3", PlayerControls.NAME_MANETTE_1));
         }
         if(controllerSize == 2){
@@ -64,7 +64,7 @@ public class CharaMenuHandler : MonoBehaviour
         }
         if (newControllerSize > controllerSize){
             SetInfoMessage("Nouvelle manette connectée");
-            Debug.Log("connect +");
+         
             if(newControllerSize == 1){
                 availableControls.Add(new PlayerControls('C',"Horizontal3", "Vertical3", "Interact3", "Action3", PlayerControls.NAME_MANETTE_1));
             }
@@ -73,7 +73,7 @@ public class CharaMenuHandler : MonoBehaviour
             }
         } else if (newControllerSize < controllerSize){
             SetInfoMessage("Mannette déconnectée");
-            Debug.Log("disconnect");
+            
             if(newControllerSize == 0){
                 availableControls.RemoveAt(availableControls.Count -1);
                 foreach(CharacterSelect c in instance.allChara){
@@ -244,6 +244,7 @@ public class CharaMenuHandler : MonoBehaviour
             VariablesGlobales.AddToPlayers(c.GetInfos());
             Debug.Log("Add global " + c.GetInfos().GetControls().GetName());
         }
+        instance.allChara = new List<CharacterSelect>();
         mainMenu.PlayGame();
     }
 

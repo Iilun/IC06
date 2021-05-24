@@ -21,23 +21,8 @@ public class Fire : Interactable
         parent = value;
     }
 
-    //Faire un pipeline des degats de feu en commun
-    //Couleur des degats
-
-    //Enlever l'attrapage de boulet ennemi
-    //Quid du cumul des effets ? Genre si je tire un boulet de glace sur une tile en feu ?
-    //Dernier effet supérieur, pas de probleme quand damage a tile.
-    //Attnetion bug du feu a resoudre
-    //Avoir le systeme tile -> tilefloor
-
-    //De mon coté : UI
-    //Pas de desactivation de la table de craft ? A faire
-    //Bug des touches toujours hein
     //TODO : Rambardes?
-    //LISTE CONTROLES DYNALIQUE ! 
 
-    //TODO : ajouter un moins pour pouvoir enlever un joueur, desactivation de la pause dans les menus, boutons retour !
-    //Si on deco une manette, passer le joueur en sans controle, mais du coup pb ?
     
     public override void Interact(Player player)
     {
@@ -103,7 +88,7 @@ public class Fire : Interactable
     private void DisplayTooltip(Player player)
     {
         string interactKey = player.GetControls().GetActionName();
-        tooltip.text = "Appuyez sur (" + interactKey + ") pour éteindre";
+        tooltip.text = "Appuyez sur (" + interactKey + ") pour eteindre";
         //26.4 -> -3.6
         //50.4 -> -3.22
     }
@@ -112,8 +97,7 @@ public class Fire : Interactable
     {
         HideTooltip(player);
         isAvailable = false;
-        Debug.Log("Exit");
-        Debug.Log(this);
+        
         player.SetSelectedInteractable(null);
     }
 

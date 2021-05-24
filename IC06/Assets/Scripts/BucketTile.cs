@@ -8,6 +8,7 @@ public class BucketTile : Interactable
     [SerializeField]
     private GameObject bucket;
 
+    public MainMenu mainMenu;
     
 
     // Start is called before the first frame update
@@ -18,8 +19,11 @@ public class BucketTile : Interactable
 
     public void Spawn(){
         GameObject bucketInstance = Instantiate(bucket, transform.position + new Vector3(0, 3, 0), Quaternion.Euler(-90,0,0));
-        if (bucketInstance != null)
-        bucketInstance.GetComponent<Bucket>().SetMotherTile(this);
+        if (bucketInstance != null){
+            bucketInstance.GetComponent<Bucket>().mainMenu = mainMenu;
+            bucketInstance.GetComponent<Bucket>().SetMotherTile(this);
+        }
+        
     }
 
     public override void Interact(Player player)
