@@ -51,11 +51,15 @@ public class GameTime : MonoBehaviour
         return instance.blueBoat;
     }
     private void StartGamePhase(){
+       
+
         instance.endCanvas.gameObject.SetActive(false);
         instance.gameCanvas.gameObject.SetActive(true);
         isEnded = false;
         //Changer la cam / La scene ? 
         SpawnPlayers();
+       
+
     }
 
     private void SpawnPlayers(){
@@ -104,6 +108,8 @@ public class GameTime : MonoBehaviour
             instance.endCanvasText.color = Color.blue;
         }
         instance.isEnded = true;
+       // DestroyableUtils.instance = null;
+        //ItemUtils.instance = null;
 
     }
 

@@ -31,6 +31,8 @@ public class MainMenu : MonoBehaviour
         bucketSpawn = false;
         SceneManager.LoadScene("MainMenu");
         VariablesGlobales.Reset();
+        TileUtils.Reset();
+        //GameTime.instance = null;
     }
 
     public void QuitGame()

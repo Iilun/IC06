@@ -9,6 +9,10 @@ public class TileUtils : MonoBehaviour
     public const float TILE_FLOOR_MAX_HEALTH = 100f;
     private static List<Tile> allTiles = new List<Tile>();
     // Start is called before the first frame update
+
+    public static void Reset(){
+        allTiles = new List<Tile>();
+    }
     void Start()
     {
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Tile"))
