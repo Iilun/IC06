@@ -5795,8 +5795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a34a7b489d2b3f4ab96eb57d99d3027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBlue: {fileID: 2574189334460015380, guid: fc3a902eb3831c7459059e22e8f10296, type: 3}
-  defaultRed: {fileID: 2574189334460015380, guid: 56155e8f189ee1b4282b60bf7b7fb51b, type: 3}
+  defaultBlue: {fileID: 63339344151868831, guid: 530117fcffa1e0c4a990dbd69714089d, type: 3}
+  defaultRed: {fileID: 63339344151868831, guid: aac1ba8c4d958c145aba164efe3d28c6, type: 3}
   gameCanvas: {fileID: 495747841}
   endCanvas: {fileID: 495747841}
   pauseCanvas: {fileID: 0}

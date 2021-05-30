@@ -146,26 +146,29 @@ public class ModelInfos
         Manteau = new List<GameObject>();
         Oeil = new List<GameObject>();
         for (int i = 0; i < model.transform.childCount; i++){
-            switch(int.Parse(model.transform.GetChild(i).name.Substring(0,2))){
-                case MODEL_ID_COUVRECHEF:
-                    CouvreChef.Add(model.transform.GetChild(i).gameObject);
-                    break;
-                case MODEL_ID_BARBE:
-                    Barbe.Add(model.transform.GetChild(i).gameObject);
-                    break;
-                case MODEL_ID_MAIN:
-                    Mains.Add(model.transform.GetChild(i).gameObject);
-                    break;
-                case MODEL_ID_JAMBES:
-                    Jambes.Add(model.transform.GetChild(i).gameObject);
-                    break;
-                case MODEL_ID_MANTEAU:
-                    Manteau.Add(model.transform.GetChild(i).gameObject);
-                    break;
-                case MODEL_ID_OEIL:
-                    Oeil.Add(model.transform.GetChild(i).gameObject);
-                    break;
+            if (model.transform.GetChild(i).name != "rig"){
+                switch(int.Parse(model.transform.GetChild(i).name.Substring(0,2))){
+                    case MODEL_ID_COUVRECHEF:
+                        CouvreChef.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                    case MODEL_ID_BARBE:
+                        Barbe.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                    case MODEL_ID_MAIN:
+                        Mains.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                    case MODEL_ID_JAMBES:
+                        Jambes.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                    case MODEL_ID_MANTEAU:
+                        Manteau.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                    case MODEL_ID_OEIL:
+                        Oeil.Add(model.transform.GetChild(i).gameObject);
+                        break;
+                }
             }
+            
         }
 
         foreach(GameObject obj in CouvreChef){

@@ -32,7 +32,7 @@ public class Fire : Interactable
         if (player.GetCurrentItem() != null && player.GetCurrentItem().GetComponent<Bucket>() != null)
         {
             firstClick = true;
-            
+            interactingPlayer.GetCurrentItem().GetComponent<Bucket>().isUsed = true;
             // p e BLOCK le mvt ici
             // ANIMATION
             StartCoroutine(WaitDestroy());
@@ -73,6 +73,7 @@ public class Fire : Interactable
         interactingPlayer = null;
         isInteracting = false;
         isAvailable = true;
+        interactingPlayer.GetCurrentItem().GetComponent<Bucket>().isUsed = false;
     }
 
 

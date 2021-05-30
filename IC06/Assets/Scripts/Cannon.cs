@@ -15,7 +15,7 @@ public class Cannon : Interactable
     private bool isAvailable;
     private bool isInteracting;
     private bool firstClick;
-    private bool isShooting;
+    public bool isShooting;
     private Player interactingPlayer;
     public const float MAX_ROTATION = 75f;
     private Quaternion base_rotation;

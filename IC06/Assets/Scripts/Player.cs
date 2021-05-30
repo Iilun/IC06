@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private bool buttonAction;
     private bool buttonRelease;
 
+    public bool isHolding;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown(controls.GetAction()) && !isInteracting && currentItem != null)
         {
             currentItem.Drop();
+        }
+
+        if(currentItem != null){
+            isHolding = true;
+        } else {
+            isHolding = false;
         }
 
     }

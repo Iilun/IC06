@@ -7,6 +7,8 @@ public class Bucket : Item
 {
     public MainMenu mainMenu;
     private bool isQuitting;
+
+    public bool isUsed;
     private BucketTile motherTile;
 
      void OnApplicationQuit()

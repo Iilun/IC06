@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     public float speed;
 
+    public bool isRunning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,10 +38,18 @@ public class PlayerMovement : MonoBehaviour
                 slow = 0.5f;
             }
 
+            if (movement != new Vector3(0,0,0)){
+                isRunning = true;
+            } else {
+                isRunning = false;
+            }
+
             //GetComponent<Rigidbody>().AddForce(movement * speed * Time.deltaTime);
             //transform.Translate(movement * speed * Time.deltaTime);
             //transform.Translate(movement * speed * Time.deltaTime, Space.World);
             transform.position += movement * speed * Time.deltaTime * slow;
+        } else {
+            isRunning = false;
         }
     }
 
