@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class PlayerControls
 {
@@ -66,13 +67,17 @@ public class PlayerControls
                 return "P";
                 //CAS MANETTES
             case "Interact3":
-                if (Input.GetJoystickNames()[0].Contains("XBOX")){
+                if (Regex.IsMatch(Input.GetJoystickNames()[0], Regex.Escape("XBOX"), RegexOptions.IgnoreCase)){
                     return "A";
                 } else {
                     return "CARRE";//PLAY ?
                 }
             case "Interact4":
-                return "";
+                if (Regex.IsMatch(Input.GetJoystickNames()[1], Regex.Escape("XBOX"), RegexOptions.IgnoreCase)){
+                    return "A";
+                } else {
+                    return "CARRE";//PLAY ?
+                }
         }
         return "";
     }

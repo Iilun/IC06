@@ -11,13 +11,15 @@ public class Bucket : Item
     public bool isUsed;
     private BucketTile motherTile;
 
-     void OnApplicationQuit()
+    void OnApplicationQuit()
     {
      isQuitting = true;
      }
 
     void OnDestroy()
     {
+        Debug.Log(mainMenu.IsBucketSpawn());
+        Debug.Log(isQuitting);
         if (!isQuitting && motherTile != null && mainMenu.IsBucketSpawn())
         {
            motherTile.Spawn();

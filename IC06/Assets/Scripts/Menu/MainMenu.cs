@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private bool bucketSpawn;
-
+    public bool bucketSpawn;
     public bool IsBucketSpawn(){
         return bucketSpawn;
     }
@@ -40,10 +39,16 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void GotoCelebration(int winnerId){
+        bucketSpawn = false;
+        SceneManager.LoadScene("Winner");
+        VariablesGlobales.winnerId = winnerId;
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Main");
-        bucketSpawn = true;
+        
     }
 
     

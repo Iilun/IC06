@@ -41,7 +41,9 @@ public class CharaMenuHandler : MonoBehaviour
         availableControls.Add(new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE));
 
 
-        //availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_MANETTE_1));//DELETE
+        availableControls.Add(new PlayerControls('C',"Horizontal1", "Vertical1", "Interact1", "Action1", PlayerControls.NAME_MANETTE_1));//DELETE
+        availableControls.Add(new PlayerControls('C',"Horizontal4", "Vertical4", "Interact4", "Action4", PlayerControls.NAME_MANETTE_2));
+
         
         controllerSize = Input.GetJoystickNames().Length;
         if (controllerSize > 0 && Input.GetJoystickNames()[0] == ""){

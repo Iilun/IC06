@@ -11,6 +11,8 @@ public class GameTime : MonoBehaviour
     public GameObject defaultRed;
     public static GameTime instance;
 
+    public MainMenu mainMenu;
+
     public const int BLUE_BOAT_ID = 0;
     public Canvas gameCanvas;
 
@@ -102,12 +104,15 @@ public class GameTime : MonoBehaviour
     public static void Stop(){
         instance.gameCanvas.gameObject.SetActive(false);
         instance.endCanvas.gameObject.SetActive(true);
-        if(instance.blueBoat.GetHealth() == 0){
-            instance.endCanvasText.color = Color.red;
-        } else {
-            instance.endCanvasText.color = Color.blue;
-        }
+        
         instance.isEnded = true;
+        int winnerId;
+        if(instance.blueBoat.GetHealth()< 0){
+            winnerId = 0;
+        } else {
+            winnerId = 1;
+        }
+        instance.mainMenu.GotoCelebration(winnerId);
        // DestroyableUtils.instance = null;
         //ItemUtils.instance = null;
 

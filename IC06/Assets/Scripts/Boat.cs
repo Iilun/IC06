@@ -30,6 +30,7 @@ public class Boat : MonoBehaviour
             //Debug.Log("addtile");
             g.GetComponent<Tile>().SetBoat(this);
         }
+        if (healthBar != null)
         healthBar.SetMaxHealth(maxHealthValue);
         fireDamageNumber = 0;
     }

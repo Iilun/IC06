@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     public void Instantiate(PlayerInfos infos, float z_offset){
         
         controls = infos.GetControls();
-        Debug.Log("Controle" + controls.GetAction());
         if (infos.GetBoatId() == GameTime.BLUE_BOAT_ID){
             boat = GameTime.GetBlueBoat();
         } else {
@@ -54,12 +53,27 @@ public class Player : MonoBehaviour
     }
 
     public void InstantiateMenu(PlayerInfos infos){
-        controls = infos.GetControls();
+        controls = new PlayerControls('V',"VoidAxis", "VoidAxis", "VoidKey", "VoidKey", PlayerControls.VIDE);
         if (infos.GetBoatId() == GameTime.BLUE_BOAT_ID){
             boat = GameTime.GetBlueBoat();
         } else {
             boat = GameTime.GetRedBoat();
         }
+        infos.GetModelInfos().SetModelToModelParameters(this.gameObject);
+        SetIsInteracting(true);
+        transform.localScale = new Vector3(3,3,3);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        
+    }
+
+    public void InstantiateCeleb(PlayerInfos infos, bool front, float x_offset){
+        controls = infos.GetControls();
+        if (front){
+            boat = WinnerTime.GetFront();
+        } else {
+            boat = WinnerTime.GetBack();
+        }
+        this.gameObject.transform.position = boat.gameObject.transform.position + new Vector3(x_offset, 0, 0);
         infos.GetModelInfos().SetModelToModelParameters(this.gameObject);
         SetIsInteracting(true);
         transform.localScale = new Vector3(3,3,3);

@@ -6,6 +6,7 @@ public static class VariablesGlobales
 {
     public static List<PlayerInfos> allPlayers;
 
+    public static int winnerId;
     public static void AddToPlayers(PlayerInfos infos){
         if(allPlayers == null){
             allPlayers = new List<PlayerInfos>();

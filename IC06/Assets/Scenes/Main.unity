@@ -5652,7 +5652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &493508469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18192,6 +18192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultBlue: {fileID: 63339344151868831, guid: 530117fcffa1e0c4a990dbd69714089d, type: 3}
   defaultRed: {fileID: 63339344151868831, guid: aac1ba8c4d958c145aba164efe3d28c6, type: 3}
+  mainMenu: {fileID: 2031664046}
   gameCanvas: {fileID: 1639296299}
   endCanvas: {fileID: 756809936}
   pauseCanvas: {fileID: 2031664044}
@@ -21279,7 +21280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1605623352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23622,7 +23623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boatId: 0
   healthBar: {fileID: 924159996}
-  maxHealthValue: 500
+  maxHealthValue: 0
 --- !u!1 &1791892859
 GameObject:
   m_ObjectHideFlags: 0
@@ -27596,6 +27597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8b2ad21106b8243be44d74a877d0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bucketSpawn: 1
 --- !u!1 &2047794077
 GameObject:
   m_ObjectHideFlags: 0

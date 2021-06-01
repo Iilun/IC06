@@ -22,6 +22,7 @@ public class Fire : Interactable
     }
 
     //TODO : Rambardes?
+    //tirer dans IEM
 
     
     public override void Interact(Player player)
