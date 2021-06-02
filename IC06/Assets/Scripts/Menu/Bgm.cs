@@ -5,30 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Bgm : MonoBehaviour
 {
-    public static Bgm instance;
+    public static Bgm instance = null;
     private string nameOfScene;
 
-    private AudioSource audio;
-
-    private bool isPlaying;
-
     private void Awake()
-    {   
-        audio = GetComponent<AudioSource>();
-        Debug.Log(instance);
+    {
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         else
-        {   
+        {
             instance = this;
-            if (!isPlaying){
-                audio.Play();
-                isPlaying= true;
-            }
-
         }
         
         DontDestroyOnLoad(this.gameObject);
