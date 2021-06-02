@@ -22,11 +22,14 @@ public class Player : MonoBehaviour
 
     public bool isHolding;
 
+    Animator m_Animator;
+
     // Start is called before the first frame update
     void Start()
     {
         isInteracting = false;
         selectedInteractable = null;
+        m_Animator = gameObject.GetComponent<Animator>();
        /*  if (player_id == 1)
         {
             controls = new PlayerControls('K',"Horizontal", "Vertical", "Interact", "Action", "");
@@ -66,12 +69,19 @@ public class Player : MonoBehaviour
         
     }
 
+    private void GetMAnimator(){
+        m_Animator = gameObject.GetComponent<Animator>();
+    }
+
     public void InstantiateCeleb(PlayerInfos infos, bool front, float x_offset){
+        GetMAnimator();
         controls = infos.GetControls();
         if (front){
             boat = WinnerTime.GetFront();
+            this.HasWon(x_offset >= 0 ? 1 : 0);
         } else {
             boat = WinnerTime.GetBack();
+            this.HasLost(x_offset >= 0 ? 1 : 0);
         }
         this.gameObject.transform.position = boat.gameObject.transform.position + new Vector3(x_offset, 0, 0);
         infos.GetModelInfos().SetModelToModelParameters(this.gameObject);
@@ -97,17 +107,38 @@ public class Player : MonoBehaviour
 
         if(currentItem != null){
             isHolding = true;
+            m_Animator.SetBool("isHolding", true);
         } else {
             isHolding = false;
+            m_Animator.SetBool("isHolding", false);
         }
 
     }
 
-    void FixedUpdate()
-    {
-        //Debug.Log(currentItem);
-        
+    public void HasWon(int animNumber){
+        if(animNumber ==0){
+            m_Animator.SetBool("isPlayer1", true);
+            m_Animator.SetBool("isWinner", true);
+            
+        } else {
+            m_Animator.SetBool("isWinner", true);
+            m_Animator.SetBool("isPlayer1", false);
+        }
     }
+
+    public void HasLost(int animNumber){
+        if(animNumber ==0){
+            m_Animator.SetBool("isPlayer1", true);
+            m_Animator.SetBool("isLoser", true);
+            
+        } else {
+            m_Animator.SetBool("isLoser", true);
+            m_Animator.SetBool("isPlayer1", false);
+        }
+    }
+
+
+
 
     void OnTriggerEnter(Collider other)
     {

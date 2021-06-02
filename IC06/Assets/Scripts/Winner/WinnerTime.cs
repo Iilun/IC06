@@ -57,7 +57,7 @@ public class WinnerTime : MonoBehaviour
         playerInfosList = VariablesGlobales.GetAllPlayers();
 
 
-
+        if(playerInfosList == null) return;
         if (playerInfosList.Count <3){
             //Deux joueurs
             foreach(PlayerInfos p in playerInfosList){

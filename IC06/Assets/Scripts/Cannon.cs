@@ -32,6 +32,10 @@ public class Cannon : Interactable
     private GameObject endCircle;
 
     private Vector3 endPosition;
+
+    private Animator m_animator;
+
+    private AudioSource tirBruit;
  
     void Start()
     {
@@ -45,7 +49,8 @@ public class Cannon : Interactable
         disabledImage.gameObject.SetActive(false);
         endCircle.SetActive(false);
         endCircle.transform.localPosition = new Vector3(0,0,0);
-
+        m_animator = GetComponent<Animator>();
+        tirBruit = GetComponent<AudioSource>();
 
         //TEST
         arc.Calculate3dArcArray(new Vector3(1,0,1), new Vector3(-9,0,-9));
@@ -133,7 +138,8 @@ public class Cannon : Interactable
     IEnumerator Shoot()
     {
        
-        
+        m_animator.SetBool("isShooting",true);
+        tirBruit.Play();
         arcArray = arc.Calculate3dArcArray(arc.transform.position, endPosition);
         StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.3f));
        
@@ -164,7 +170,7 @@ public class Cannon : Interactable
                 
                 yield return new WaitForSeconds(1f / arcArray.Length);
                 
-
+                m_animator.SetBool("isShooting",false);
                 }
         }
 

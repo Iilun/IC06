@@ -10,10 +10,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isRunning;
 
+    Animator m_Animator;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
+        m_Animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,8 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
             if (movement != new Vector3(0,0,0)){
                 isRunning = true;
+                m_Animator.SetBool("isRunning", true);
             } else {
                 isRunning = false;
+                m_Animator.SetBool("isRunning", false);
             }
 
             //GetComponent<Rigidbody>().AddForce(movement * speed * Time.deltaTime);
@@ -50,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position += movement * speed * Time.deltaTime * slow;
         } else {
             isRunning = false;
+            m_Animator.SetBool("isRunning", false);
         }
     }
 

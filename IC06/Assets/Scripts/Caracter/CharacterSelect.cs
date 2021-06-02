@@ -125,7 +125,7 @@ public class CharacterSelect : MonoBehaviour
 
     public void Personalize(){
         if(slot_id != CharaMenuHandler.DEFAULT_SLOT){
-            mainCamera.transform.position = transform.position + new Vector3(0, 20, -5);
+            mainCamera.transform.position = transform.position + new Vector3(0, 14, -15);
             playerCanvas.gameObject.SetActive(true);
             boatCanvas.gameObject.SetActive(false);
             CharaMenuHandler.SetCurrentPersonnalizationSlot(slot_id);

@@ -33,7 +33,7 @@ public class Bullet : Item
 
     public const int BOMB_EXPLOSION_TIME = 8;
 
-    public const float NORMAL_EXPLOSION_DELAY = 2;
+    public const float NORMAL_EXPLOSION_DELAY = 0;
 
     public const int NORMAL_BULLET_BOAT_DAMAGE = 150;
 

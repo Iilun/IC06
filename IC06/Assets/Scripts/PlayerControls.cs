@@ -67,16 +67,16 @@ public class PlayerControls
                 return "P";
                 //CAS MANETTES
             case "Interact3":
-                if (Regex.IsMatch(Input.GetJoystickNames()[0], Regex.Escape("XBOX"), RegexOptions.IgnoreCase)){
-                    return "A";
+                if (Regex.IsMatch(Input.GetJoystickNames()[0], Regex.Escape("Playstation"), RegexOptions.IgnoreCase)){
+                    return "□";
                 } else {
-                    return "CARRE";//PLAY ?
+                    return "A";//PLAY ?
                 }
             case "Interact4":
-                if (Regex.IsMatch(Input.GetJoystickNames()[1], Regex.Escape("XBOX"), RegexOptions.IgnoreCase)){
-                    return "A";
+                if (Regex.IsMatch(Input.GetJoystickNames()[1], Regex.Escape("PLaystation"), RegexOptions.IgnoreCase)){
+                    return "□";
                 } else {
-                    return "CARRE";//PLAY ?
+                    return "A";//PLAY ?
                 }
         }
         return "";

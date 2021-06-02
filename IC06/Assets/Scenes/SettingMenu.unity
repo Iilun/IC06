@@ -628,13 +628,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Vous pouvez choisir de jouer en 2 ou 4 joueurs.\n\nPour le d\xE9placement,
-    vous pouvez utiliser le clavier \" z q s d\" , \"o k l m\" ou bien les manettes.\n\nUn
+  m_Text: "Le jeu se joue \xE0 deuux ou 4 joueurs.\r\n\r\nPour le d\xE9placement,
+    vous pouvez utiliser le clavier \" z q s d\" , \"o k l m\" ou bien les manettes.\r\n\r\nUn
     bouton Interagir \"E',\"P\", ou bien pour les manettes le bouton bas (\"A\" sur
     XBOX par exemple), permet d'interagir avec les ressources, et de jeter un objet
-    devant soi. \n\nUn bonton d'action \"Espace\", \"Left ctrl\", ou le bouton droit
-    sur manettes (\"B\" sur XBOX par exemple), permet de r\xE9cup\xE9rer un objet
-    pos\xE9 sur l'atelier, et de tirer en maintenant ce bouton."
+    devant soi. \r\n\r\nUn bouton d'action \"Espace\", \"Left ctrl\", ou le bouton
+    droit sur manettes (\"B\" sur XBOX par exemple), permet de r\xE9cup\xE9rer un
+    objet pos\xE9 sur l'atelier, et de tirer en maintenant ce bouton.\r\n\r\nLe choix
+    des controles se fait au m\xEAme moment que la s\xE9lection des personnages,
+    que vous pouvez d'ailleurs personnaliser en cliquant dessus dans le menu ! "
 --- !u!222 &376381360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -864,6 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8b2ad21106b8243be44d74a877d0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bucketSpawn: 0
 --- !u!114 &576840578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,11 +2048,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "C'est un jeu 2 vs 2 ou 4 vs 4, jouable avec deus joueurs claviers et deux
-    joueurs manettes.\n\nVous fabriquez des boulets sur un atelier en utilisant les
-    ingr\xE9dients donn\xE9s, et puis les lancez.\n\nIl y a 6 boulets diff\xE9rents
-    et 4 ingr\xE9dients. Chaque boulet se compose de 2 ingr\xE9dients diff\xE9rents.\n\nAttention,
-    un boulet peut cause un effet sur un autre boulet.\n"
+  m_Text: "Le jeu se joue en 1v1 ou 2v2 (\xE0 l'aide de manettes).\r\n\r\nLe but
+    est de d\xE9truire le bateau adverse en r\xE9duisant ses points de vie \xE0 n\xE9ant
+    !\r\n\r\nPour cela, de puissants boulets vont vous aider ! Fabriquez les sur
+    l'atelier \xE0 l'aide de 2 ingr\xE9dients dispos\xE9s \xE0 chaque coin de votre
+    bateau !\r\n\r\nChaque boulet parmis les 6 possibles poss\xE8dent un pouvoir
+    ! A vous de le d\xE9couvrir !\r\n\r\nUne fois votre boulet cr\xE9\xE9, il suffit
+    de l'envoyer sur le bateau adverse pour lui infliger des pertes terribles !"
 --- !u!222 &1687307261
 CanvasRenderer:
   m_ObjectHideFlags: 0
