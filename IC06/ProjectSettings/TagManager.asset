@@ -9,6 +9,7 @@ TagManager:
   - Cannon
   - Water
   - TileFloor
+  - bgm
   layers:
   - Default
   - TransparentFX
