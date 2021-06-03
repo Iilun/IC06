@@ -42,7 +42,7 @@ public class WinnerTime : MonoBehaviour
     }
     public void StartWinnerPhase(int winnerId){
         Debug.Log(winnerId);
-        Debug.Log(instance);
+
         SpawnPlayers(winnerId);
         if(winnerId != BLUE_BOAT_ID){
             instance.endCanvasText.color = Color.red;
@@ -65,7 +65,6 @@ public class WinnerTime : MonoBehaviour
                 if (p.GetBoatId() == BLUE_BOAT_ID){
                     playerObject = Instantiate(GetBlueModel(), new Vector3(0,100,0), Quaternion.Euler(0,180,0));
                 } else {
-                    Debug.Log(GetRedModel());
                     playerObject = Instantiate(GetRedModel(), new Vector3(0,100,0), Quaternion.Euler(0,180,0));
                 }
 

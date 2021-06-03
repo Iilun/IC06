@@ -53,6 +53,8 @@ public class TileFloor : Destroyable
                // LA FAUDRA FAIRE LE SYSTEME
                
                Instantiate(DestroyableUtils.GetTileDestroyAlone(), motherTile.transform.position, Quaternion.identity);
+               this.motherTile.SetFire(false);
+               this.motherTile.SetIce(false);
                Destroy(gameObject);
             }
         }

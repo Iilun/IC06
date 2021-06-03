@@ -161,7 +161,7 @@ public class Tile : Destroyable
     {
         if (value)
         {
-            if(fire == null && tileFloor.IsDestroyable())
+            if(fire == null && tileFloor.IsDestroyable() && !tileFloor.IsDestroyed())
             {
                 ActivateFire();
             }
@@ -183,7 +183,7 @@ public class Tile : Destroyable
     {
         if (value)
         {
-            if(ice == null)
+            if(ice == null && !tileFloor.IsDestroyed())
             {
                 ActivateIce();
             }

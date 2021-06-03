@@ -9,9 +9,7 @@ public class PlayerInfos
     private PlayerControls controls;
 
     public PlayerInfos(PlayerControls controls, int slot_id){
-        Debug.Log("Creating new player, slot =" + slot_id);
         boatId = (slot_id +1)  %2 ;//TODO
-        Debug.Log("Boat =" + boatId);
         this.modelInfos = new ModelInfos(slot_id);
         this.controls = controls;
     }

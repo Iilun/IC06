@@ -41,8 +41,9 @@ public class MainMenu : MonoBehaviour
 
     public void GotoCelebration(int winnerId){
         bucketSpawn = false;
-        SceneManager.LoadScene("Winner");
         VariablesGlobales.winnerId = winnerId;
+        SceneManager.LoadScene("Winner");
+        
     }
 
     public void PlayGame()

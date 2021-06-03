@@ -121,7 +121,6 @@ public class CharaMenuHandler : MonoBehaviour
         } else {
             //ERROR PAS DE MANNETTE
             SetErrorMessage("Ajout de manette necessaire");
-            Debug.Log("Ajout de manette necessaire");
         }
     }
 
@@ -192,8 +191,6 @@ public class CharaMenuHandler : MonoBehaviour
     }
 
     public void ChangeCouvreChef(bool sens){
-        Debug.Log(GetCurrentPersonnalizationSlot());
-        Debug.Log(instance.allChara);
         CharacterSelect chara = instance.allChara[GetCurrentPersonnalizationSlot()];
         chara.GetInfos().GetModelInfos().ChangeCouvreChef(sens);
         chara.GetInfos().GetModelInfos().SetModelToModelParameters(chara.GetGameObject());

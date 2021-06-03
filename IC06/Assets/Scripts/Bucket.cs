@@ -18,8 +18,6 @@ public class Bucket : Item
 
     void OnDestroy()
     {
-        Debug.Log(mainMenu.IsBucketSpawn());
-        Debug.Log(isQuitting);
         if (!isQuitting && motherTile != null && mainMenu.IsBucketSpawn())
         {
            motherTile.Spawn();

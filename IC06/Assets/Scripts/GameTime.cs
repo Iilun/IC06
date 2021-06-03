@@ -32,7 +32,6 @@ public class GameTime : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("AWAKEEEEEEEEEEEEEEEEEEEE");
         instance = this;
         if(isGameMode){
             StartGamePhase();
@@ -95,7 +94,6 @@ public class GameTime : MonoBehaviour
                 }  
                 playerObject.GetComponent<Player>().Instantiate(p, offset);
                 offset = offset - (Mathf.Sign(offset) * 10);
-                Debug.Log(offset);
             }
 
         }
@@ -107,12 +105,13 @@ public class GameTime : MonoBehaviour
         
         instance.isEnded = true;
         int winnerId;
-        if(instance.blueBoat.GetHealth()< 0){
-            winnerId = 0;
-        } else {
+        if(instance.blueBoat.GetHealth()<= 0){
             winnerId = 1;
+        } else {
+            winnerId = 0;
         }
         instance.mainMenu.GotoCelebration(winnerId);
+        Debug.Log("j'ai envoye " + winnerId);
        // DestroyableUtils.instance = null;
         //ItemUtils.instance = null;
 

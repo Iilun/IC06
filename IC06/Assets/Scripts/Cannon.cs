@@ -36,6 +36,8 @@ public class Cannon : Interactable
     private Animator m_animator;
 
     private AudioSource tirBruit;
+
+    public AudioSource bouletBruit;
  
     void Start()
     {
@@ -99,7 +101,7 @@ public class Cannon : Interactable
 
             }
 
-            if (bullet != null && interactingPlayer != null && Input.GetButtonDown(interactingPlayer.GetControls().GetRelease()))
+            if (bullet != null && interactingPlayer != null && Input.GetButtonDown(interactingPlayer.GetControls().GetRelease()) && !disabled)
             {
                 
                 bullet.Load();
@@ -140,6 +142,7 @@ public class Cannon : Interactable
        
         m_animator.SetBool("isShooting",true);
         tirBruit.Play();
+        bouletBruit.Play();
         arcArray = arc.Calculate3dArcArray(arc.transform.position, endPosition);
         StartCoroutine(bullet.EnableCollider(1f / arcArray.Length * 0.3f));
        

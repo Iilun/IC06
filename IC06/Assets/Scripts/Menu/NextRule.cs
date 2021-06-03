@@ -11,12 +11,12 @@ public class NextRule : MonoBehaviour
     private Text explication;
     private Image illustration;
     private int index = -1;
-    private string[] texts = { "Poudre + Fer = Boulet Explosif \n Dégâts importants \n Explosion au bout d'une courte durée",
+    private string[] texts = { "Poudre + Fer = Bombe !! \n Dégâts très importants, destruction immédiate du sol ! Dans un cercle 3x3 \n Explosion au bout d'une courte durée",
     "Dynamite gelée + Fer = Boulet Classique \n Dégats puissants au centre, et faible sur les cotés \n Attaque les points de vie sur une croix de 1 de coté",
-    "Dynamite gelée + Poudre = Boulet de Feu \n Dégâts faibles mais persistants \n Désactive l'effet de glace. Peut être éteint avec un seau d'eau",
-    "Dynamite gelée + Potion magique = Boulet de Gel \n Désactive l'effet de feu. Ralentissement sur zone (3x3) \n Blocage du personnage si touché (2-3 secondes)",
-    "Fer + Potion magique = Boulet IEM \n Désactive les objets sur zone (3x3) \n Désactive les canons, la table de craft, les zones d'ingrédien",
-    "Poudre + Potion magique = Boulet de Vent \n Agrandit la zone du feu"
+    "Dynamite gelée + Poudre = Boulet de Feu \n Dégâts faibles mais persistant sur les points de vie du bateau \n Désactive l'effet de glace. Peut être éteint avec un seau d'eau",
+    "Dynamite gelée + Potion magique = Boulet de Gel \n Désactive l'effet de feu. Ralentit sur une zone 3x3 \n Blocage du personnage si touché (3 secondes)",
+    "Fer + Potion magique = Boulet IEM \n Désactive les objets sur zone 3x3 \n Désactive les canons, l'atelier, les zones d'ingrédients",
+    "Poudre + Potion magique = Boulet de Vent \n Agrandit la zone du feu sur une zone 3x3"
     };
 
     // Start is called before the first frame update
@@ -40,7 +40,6 @@ public class NextRule : MonoBehaviour
         
         index++;
         index %= 6;
-        Debug.Log(index);
         recette.sprite = sprites1[index];
         explication.text = texts[index];
         if (index != 0)

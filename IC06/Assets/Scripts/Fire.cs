@@ -99,8 +99,9 @@ public class Fire : Interactable
     {
         HideTooltip(player);
         isAvailable = false;
-        
-        player.SetSelectedInteractable(null);
+        if(player.GetSelectedInteractable() == this ){
+            player.SetSelectedInteractable(null);
+        }
     }
 
     private void HideTooltip(Player player)

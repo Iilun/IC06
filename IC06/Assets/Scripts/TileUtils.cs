@@ -40,7 +40,6 @@ public class TileUtils : MonoBehaviour
     {
         List<Tile> tiles = GetTilesForBoat(origin.GetBoat());
         Vector3 currentPosition = origin.gameObject.transform.position;
-        Debug.Log(currentPosition);
         //On vire la tile d'aterrissage
         tiles.RemoveAll((Tile t) => t.transform.position.Equals(currentPosition));
 
